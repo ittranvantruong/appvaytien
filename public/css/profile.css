@@ -1,0 +1,60 @@
+@media (min-width: 768px) {
+    body {
+        display: none;
+    }
+}
+
+body {
+    overflow: hidden;
+    background: #e7e7e7;
+}
+
+header {
+    background-color: white;
+    height: 55px;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+.container {
+    background-color: white;
+    padding: 20px 15px;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+}
+
+#button_back {
+    position: absolute;
+    top: 28%;
+    left: 5%;
+}
+
+.text-purple {
+    color: purple;
+}
+
+.ip_pass {
+    margin-top: -7px;
+    padding-right: 0px;
+    border: none;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.btn.btn-full-tim {
+    padding: 8px 3px;
+    background: purple;
+    color: white;
+    font-size: 16px;
+    border: 1px solid purple;
+    width: 100%;
+}
