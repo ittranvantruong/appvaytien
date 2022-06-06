@@ -18,8 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'phone',
         'password',
     ];
 
@@ -41,4 +40,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function wallet(){
+        return $this->hasOne(Wallet::class, 'user_id', 'id');
+    }
+    
+    public function bank(){
+        return $this->hasOne(Userbank::class, 'user_id', 'id');
+    }
+
+    public function info(){
+        return $this->hasOne(UserInfo::class, 'user_id', 'id');
+    }
+
+    public function loan_amount(){
+        return $this->hasMany(UserLoanAmount::class, 'user_id', 'id');
+    }
+
 }
