@@ -50,8 +50,7 @@ $(document).on('click', '.edit-load', function () {
         success: function (response) {
             // console.log($(element).find('img.show-avatar-user-secondary').attr('src'));
             $(element+' input[name="id"]').val(response.id);
-            $(element+' input[name="title"]').val(response.title);
-            $(element+' select[name="status"] option[value="'+response.status+'"]').prop('selected', true);
+            $(element+' input[name="name"]').val(response.name);
             $(element+' input[name="sort"]').val(response.sort);
             $(modal).modal('show');
         },
@@ -82,7 +81,7 @@ $(document).on('submit', '#formUpdate', function (e) {
             position: 'top-right',
             icon: 'success'
         });
-        $("#modalCategory").modal('hide');
+        $("#modalEdit").modal('hide');
         form.parsley().reset();
         form.trigger("reset");
     }).fail(function(response){
