@@ -53,6 +53,10 @@ class User extends Authenticatable
         return $this->hasOne(UserInfo::class, 'user_id', 'id');
     }
 
+    public function verify(){
+        return $this->hasOne(UserVerify::class, 'user_id', 'id');
+    }
+
     public function loan_amount(){
         return $this->hasMany(UserLoanAmount::class, 'user_id', 'id');
     }

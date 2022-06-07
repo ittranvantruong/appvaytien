@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LoanAmount extends Model
 {
     use HasFactory;
-    protected $table = 'user_loan_amount';
+    protected $table = 'loan_amount';
 
     protected $fillable = ['name', 'sort'];
 }
