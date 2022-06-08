@@ -12,6 +12,11 @@ class UserInfo extends Model
 
     protected $fillable = ['user_id', 'fullname', 'identity_number', 'education', 'personal_income', 'purpose', 'private_apartment', 'private_car'];
 
+    protected $attributes = [
+        'private_apartment' => 0,
+        'private_car' => 0
+    ];
+
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id')->select('phone');
     }

@@ -29,7 +29,7 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#managerTour"
                 aria-expanded="true" aria-controls="managerOrder">
                 <i class="fas fa-people-carry"></i>
-                <span>Quản lý gói vay</span>
+                <span>Qlý gói vay</span>
             </a>
             <div id="managerTour" class="collapse" aria-labelledby="headingTwo" data-parent="#managerTour">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -39,9 +39,38 @@
                 </div>
             </div>
         </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#managerPackageUser"
+                aria-expanded="true" aria-controls="managerOrder">
+                <i class="fas fa-people-carry"></i>
+                <span>Qlý gói vay thành viên</span>
+            </a>
+            <div id="managerPackageUser" class="collapse" aria-labelledby="headingTwo" data-parent="#managerPackageUser">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('admin.user.loan.amount.index', ['status' => 0]) }}">Chưa xét duyệt</a>
+                    <a class="collapse-item" href="{{ route('admin.user.loan.amount.index', ['status' => 1]) }}">Đã xét duyệt</a>                    
+                </div>
+            </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-        
-        
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#managerUser"
+                aria-expanded="true" aria-controls="managerUser">
+                <i class="fas fa-people-carry"></i>
+                <span>Qlý thành viên</span>
+            </a>
+            <div id="managerUser" class="collapse" aria-labelledby="headingTwo" data-parent="#managerUser">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('admin.user.create') }}">Thêm thành viên</a>
+                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Danh sách thành viên</a>
+                </div>
+            </div>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 

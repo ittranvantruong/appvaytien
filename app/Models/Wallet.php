@@ -11,4 +11,8 @@ class Wallet extends Model
     protected $table = 'wallets';
 
     protected $fillable = ['user_id', 'amount'];
+
+    protected $attributes = [
+        'amount' => 0
+    ];
 }
