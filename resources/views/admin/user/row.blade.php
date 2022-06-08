@@ -4,7 +4,7 @@
     <td>{{$item->info->identity_number}}</td>
     <td>{{$item->info->education}}</td>
     <td>{{$item->info->purpose}}</td>
-    <td>{!! $item->verify ? '<span class="text-success">Đã xác minh</span>' : 'Chưa xác minh' !!}</td>
+    <td>{!! $item->verified ? '<span class="text-success">Đã xác minh</span>' : 'Chưa xác minh' !!}</td>
     <td>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
             <a href="{{ route('admin.user.edit', $item->id) }}" class="btn btn-sm btn-warning">

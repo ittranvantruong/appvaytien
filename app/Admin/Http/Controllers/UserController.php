@@ -12,12 +12,12 @@ class UserController extends Controller
 {
     //
     public function index(Request $request){
-        $users = User::select('id', 'phone');
+        $users = User::select('id', 'phone', 'verified');
         if($request->filled('type')){
             $type = $request->type;
             $users = $users->whereVerified($type);
         }
-        $users = $users->with(['info', 'verify:user_id,info_personal,info_general,bank,phone'])->get();
+        $users = $users->with(['info'])->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -54,7 +54,7 @@ class UserController extends Controller
         //tạo xác minh
         $user->verify()->create();
         
-        dd($user);
+        return redirect()->route('admin.user.edit', $user->id)->with('success', 'Thêm thành công');
     }
 
     public function update(UserRequest $request){
