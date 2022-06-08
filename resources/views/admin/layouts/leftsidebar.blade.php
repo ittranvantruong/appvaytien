@@ -28,7 +28,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#managerTour"
                 aria-expanded="true" aria-controls="managerOrder">
-                <i class="fas fa-people-carry"></i>
+                <i class="fa fa-cube" aria-hidden="true"></i>
                 <span>Qlý gói vay</span>
             </a>
             <div id="managerTour" class="collapse" aria-labelledby="headingTwo" data-parent="#managerTour">
@@ -44,7 +44,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#managerPackageUser"
                 aria-expanded="true" aria-controls="managerOrder">
-                <i class="fas fa-people-carry"></i>
+                <i class="fa fa-cubes" aria-hidden="true"></i>
                 <span>Qlý gói vay thành viên</span>
             </a>
             <div id="managerPackageUser" class="collapse" aria-labelledby="headingTwo" data-parent="#managerPackageUser">
@@ -60,7 +60,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#managerUser"
                 aria-expanded="true" aria-controls="managerUser">
-                <i class="fas fa-people-carry"></i>
+                <i class="fa fa-users" aria-hidden="true"></i>
                 <span>Qlý thành viên</span>
             </a>
             <div id="managerUser" class="collapse" aria-labelledby="headingTwo" data-parent="#managerUser">
