@@ -25,6 +25,8 @@ class AuthController extends Controller
                 session()->forget('url-redirect');
                 return redirect($url)->with('success', 'Bạn đã đăng nhập thành công');
             }
+            $request->session()->regenerate();
+
             return redirect()->route('admin.index')->with('success', 'Bạn đã đăng nhập thành công');
         }
         
