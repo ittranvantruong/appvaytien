@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 06, 2022 lúc 12:26 PM
+-- Thời gian đã tạo: Th6 08, 2022 lúc 08:42 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -42,7 +42,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', NULL, '$2y$10$p3ESqHIwQmOgAw8RfAKaUuj6M6.h3.aL722jor0ZfWCkUuhQt2LHK', NULL, NULL, NULL);
+(1, 'admin', NULL, '$2y$10$vya0JOhmiwt0D/GSdoDMU.dkNaymBALlG39DWWAm42bzwUCvbRGQm', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -106,21 +106,21 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_06_06_070219_create_user_info_table', 1),
-(6, '2022_06_06_071134_create_user_bank_table', 1),
-(7, '2022_06_06_072035_create_admins_table', 1),
-(8, '2022_06_06_072403_create_wallets_table', 1),
-(9, '2022_06_06_073222_create_loan_amount_table', 1),
-(10, '2022_06_06_073635_create_loan_period_table', 1),
-(11, '2022_06_06_074034_create_user_loan_amount_table', 1),
-(12, '2022_06_06_075019_create_user_loan_repayment_table', 1),
-(13, '2022_06_06_075543_create_user_withdrawal_progress_table', 1),
-(14, '2022_06_06_075816_create_settings_table', 1),
-(15, '2022_06_06_091413_create_user_verify_table', 2);
+(16, '2014_10_12_000000_create_users_table', 1),
+(17, '2014_10_12_100000_create_password_resets_table', 1),
+(18, '2019_08_19_000000_create_failed_jobs_table', 1),
+(19, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(20, '2022_06_06_070219_create_user_info_table', 1),
+(21, '2022_06_06_071134_create_user_bank_table', 1),
+(22, '2022_06_06_072035_create_admins_table', 1),
+(23, '2022_06_06_072403_create_wallets_table', 1),
+(24, '2022_06_06_073222_create_loan_amount_table', 1),
+(25, '2022_06_06_073635_create_loan_period_table', 1),
+(26, '2022_06_06_074034_create_user_loan_amount_table', 1),
+(27, '2022_06_06_075019_create_user_loan_repayment_table', 1),
+(28, '2022_06_06_075543_create_user_withdrawal_progress_table', 1),
+(29, '2022_06_06_075816_create_settings_table', 1),
+(30, '2022_06_06_091413_create_user_verify_table', 1);
 
 -- --------------------------------------------------------
 
@@ -176,6 +176,7 @@ CREATE TABLE `settings` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `verified` tinyint(1) NOT NULL DEFAULT 0,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -389,7 +390,8 @@ ALTER TABLE `user_info`
 ALTER TABLE `user_loan_amount`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_loan_amount_code_unique` (`code`),
-  ADD KEY `user_loan_amount_user_id_foreign` (`user_id`);
+  ADD KEY `user_loan_amount_user_id_foreign` (`user_id`),
+  ADD KEY `user_loan_amount_code_status_index` (`code`,`status`);
 
 --
 -- Chỉ mục cho bảng `user_loan_repayment`
@@ -451,7 +453,7 @@ ALTER TABLE `loan_period`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`

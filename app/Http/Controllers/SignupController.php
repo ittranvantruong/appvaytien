@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Userbank;
 use App\Models\UserInfo;
+use App\Models\UserVerify;
 use App\Models\Wallet;
 
 class SignupController extends Controller
@@ -19,8 +20,8 @@ class SignupController extends Controller
 
     public function postLogin(Request $request) {
         $error = [
-            'phone.required' => 'Mời nhập phone!',
-            'password.required' => 'Mời nhập mật khẩu!',
+            'phone.required' => 'Chưa nhập số điện thoại đăng nhập!',
+            'password.required' => 'Bạn chưa nhập mật khẩu!',
         ];
 
         $info = $request->validate([
@@ -33,17 +34,20 @@ class SignupController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->with('mess', 'Tài khoản hoặc mật khẩu không đúng!',);
+        return back();
     }
 
     public function postRegister(Request $request) {
         $error = [
             'phone.required' => 'Mời nhập phone!',
+            'phone.unique' => 'Số phone bị trùng!',
+            'phone.digits_between' => 'Số điện thoại đăng ký không hợp lệ!',
             'password.required' => 'Mời nhập mật khẩu!',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 chữ số!'
         ];
 
         $request->validate([
-            'phone' => 'digits_between:7,11',
+            'phone' => 'digits_between:7,11|unique:users|required',
             'password' => 'required|min:6',
         ], $error);
 
@@ -64,6 +68,10 @@ class SignupController extends Controller
         $wallet->user_id = $user->id;
         $wallet->save();
 
-        return back()->with('mess', 'Không hợp lệ!',);
+        $verified = new UserVerify;
+        $verified->user_id = $user->id;
+        $verified->save();
+
+        return back()->with('mess', 'Chúc mừng!');
     }
 }

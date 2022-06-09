@@ -30,9 +30,9 @@
             <span class="float-end">
                 <input type="text" name="email"
                     class="form-control text-end ip_pass"
-                    value="{{$user->info->email}}"
-                    @if ($user->info->email != null)
-                    placeholder="{{$user->info->email}}"
+                    value="{{$user->email}}"
+                    @if ($user->email != null)
+                    placeholder="{{$user->email}}"
                     @else
                     placeholder="Nhập email"
                     @endif >

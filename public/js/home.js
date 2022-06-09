@@ -35,15 +35,15 @@ for (var i = 0; i < btn_thoigianvay.length; i++) {
 }
 
 function thoiGianVay(value, laisuat) {
-    document.getElementById('thoi-gian-vay').innerHTML = value;
+    document.getElementById('thoi-gian-vay').innerHTML = value+'<input name="loan_period" value="'+value+'" hidden>';
     document.getElementById('text_modal_tgvay').innerHTML = value;
-    document.getElementById('laisuat').innerHTML = laisuat;
+    document.getElementById('laisuat').innerHTML = laisuat+'<input name="interest_rate" value="'+laisuat+'" hidden>';
     document.getElementById('text_lai_suat_vay').innerHTML = laisuat;
 }
 
 function changeText(value) {
     document.getElementById('text_modal_khoangvay').innerHTML = value;
-    document.getElementById('gia_tien').innerHTML = value;
+    document.getElementById('gia_tien').innerHTML = value+'<input name="loan_amount" value="'+value+'" hidden>';
     // if(value == "10 đến 50 triệu")
     // {
     //     document.getElementById('gia_tien').innerHTML = "10 triệu đến 50 triệu";

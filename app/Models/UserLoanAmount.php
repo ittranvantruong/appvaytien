@@ -16,6 +16,10 @@ class UserLoanAmount extends Model
         return $this->hasMany(UserLoanRepayment::class, 'user_loan_amount_id', 'id');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function withdrawal_progress(){
         return $this->hasMany(UserwithdrawalProgress::class, 'user_loan_amount_id', 'id');
     }

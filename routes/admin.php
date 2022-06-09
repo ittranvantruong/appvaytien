@@ -6,6 +6,8 @@ use App\Admin\Http\Controllers\HomeController;
 use App\Admin\Http\Controllers\SettingController;
 use App\Admin\Http\Controllers\LoanAmountController;
 use App\Admin\Http\Controllers\LoanPeriodController;
+use App\Admin\Http\Controllers\UserController;
+use App\Admin\Http\Controllers\UserLoanAmountController;
 
 Route::get('dang-nhap', [AuthController::class, 'login'])->name('login');
 
@@ -33,6 +35,28 @@ Route::group(['middleware' => ['admin']], function () {
         Route::put('update', [LoanPeriodController::class, 'update'])->name('update');
         Route::delete('delete/{loan_period:id}', [LoanPeriodController::class, 'delete'])->name('delete');
         Route::post('multiple', [LoanPeriodController::class, 'multiple'])->name('multiple');
+    });
+
+    Route::group(['prefix' => 'quan-ly-goi-vay-thanh-vien', 'as' => 'user.loan.amount.'], function () {
+        Route::get('/', [UserLoanAmountController::class, 'index'])->name('index');
+        // Route::get('create', [UserController::class, 'create'])->name('create');
+        Route::get('edit/{user_loan_amount:id}', [UserLoanAmountController::class, 'edit'])->name('edit');
+        // Route::post('store', [UserController::class, 'store'])->name('store');
+        Route::put('update/{user_loan_amount:id}', [UserLoanAmountController::class, 'update'])->name('update');
+        // Route::put('verify/{user:id}', [UserController::class, 'verify'])->name('verify');
+        Route::delete('delete/{user_loan_amount:id}', [UserLoanAmountController::class, 'delete'])->name('delete');
+        // Route::post('multiple', [LoanPeriodController::class, 'multiple'])->name('multiple');
+    });
+
+    Route::group(['prefix' => 'quan-ly-thanh-vien', 'as' => 'user.'], function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('create', [UserController::class, 'create'])->name('create');
+        Route::get('edit/{user:id}', [UserController::class, 'edit'])->name('edit');
+        Route::post('store', [UserController::class, 'store'])->name('store');
+        Route::put('update', [UserController::class, 'update'])->name('update');
+        Route::put('verify/{user:id}', [UserController::class, 'verify'])->name('verify');
+        Route::delete('delete/{user:id}', [UserController::class, 'delete'])->name('delete');
+        // Route::post('multiple', [LoanPeriodController::class, 'multiple'])->name('multiple');
     });
 
     Route::get('cai-dat', [SettingController::class, 'index'])->name('setting');

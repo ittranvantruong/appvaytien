@@ -27,6 +27,8 @@ class CreateUserLoanAmountTable extends Migration
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('SET NULL');
+            
+            $table->index(['code', 'status']);
         });
     }
 

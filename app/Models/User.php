@@ -14,6 +14,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'phone',
+        'verified',
         'password',
     ];
     
@@ -40,6 +41,20 @@ class User extends Authenticatable
 
     public function verify(){
         return $this->hasOne(UserVerify::class, 'user_id', 'id');
+    }
+
+    public function verified(){
+        return $this->verify()->update([
+            'info_personal' => 1, 
+            'info_general' => 1, 
+            'bank' => 1, 
+            'phone' => 1
+        ]);
+    }
+
+    public function checkVerified(){
+        $get = $this->verify;
+        return $get->info_personal && $get->info_general && $get->bank && $get->phone;
     }
 
     public function loan_amount(){

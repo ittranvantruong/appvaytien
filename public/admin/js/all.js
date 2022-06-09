@@ -103,6 +103,7 @@ $(document).ready(function () {
         $($(this).data('target')).submit();
     });
 
+
     $("#search").on("keyup", function () {
         var value = $(this).val().toLowerCase(),
             target = $($(this).data('target'));

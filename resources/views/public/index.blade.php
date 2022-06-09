@@ -16,12 +16,13 @@
     </section>
     <p class="p-4"></p>
 
+    <form action="{{url('/order')}}" method="POST">
     <section class="position-relative" id="content_chinh">
         <div class="row m-3" id="mid_content">
             <div class="col-12">
                 <h6 class="m-0"><strong>Khoản vay ước tính (Đồng)</strong></h6>
                 <h3 class="m-0" id="gia_tien">
-                    {{$loan_name->first()->name}}
+                    {{$loan_name->first()->name ?? ''}}
                 </h3>
             </div>
             <div class="col-6">
@@ -30,7 +31,8 @@
                         <i class="fa fa-home" style="font-size: 40px;"></i>
                     </div>
                     <div class="col-9">
-                        <p class="m-0 pt-1"><span id="laisuat">{{$loan_day->first()->interest_rate}}</span>%</p>
+                        <p class="m-0 pt-1"><span id="laisuat">
+                            {{$loan_day->first()->interest_rate ?? ''}}</span>%</p>
                         <p class="m-0 fs-10">lãi suất tháng</p>
                     </div>
                 </div>
@@ -41,7 +43,7 @@
                         <i class="fa fa-home" style="font-size: 40px;"></i>
                     </div>
                     <div class="col-9 pt-1">
-                        <p class="m-0" id="thoi-gian-vay">{{$loan_day->first()->name}}</p>
+                        <p class="m-0" id="thoi-gian-vay">{{$loan_day->first()->name ?? ''}}</p>
                         <p class="m-0 fs-10">thời hạn khoản vay</p>
                     </div>
                 </div>
@@ -94,10 +96,15 @@
                 </div>
             </div>
 
+            @if ($user->verified == 0)
             <a class="btn btn-full-tim" data-bs-toggle="modal" data-bs-target="#dangkykhoanvay">
                 Đăng ký khoản vay
             </a>
-              
+            @else
+            <a class="btn btn-tim" style="font-size: 16px">
+                Hồ sơ của bạn chưa hoàn thành!
+            </a>
+            @endif
             <!-- Modal Xac Nhan khoan Vay -->
             <div class="modal fade" id="dangkykhoanvay" style="margin-top: 125px;">
                 <div class="modal-dialog">
@@ -113,8 +120,8 @@
                                     <p>Tên người vay <span class="float-end">Trần Kim Anh Tuấn</span></p>
                                     <p>Số CMND <span class="float-end">2123456789</span></p>
                                     <p>Số điện thoại <span class="float-end">0123456789</span></p>
-                                    <p>Hạn mức khoản vay <span class="float-end" id="text_modal_khoangvay">{{$loan_name->first()->name}}</span></p>
-                                    <p>Thời hạn khoản vay <span class="float-end" id="text_modal_tgvay">{{$loan_day->first()->name}}</span></p>
+                                    <p>Hạn mức khoản vay <span class="float-end" id="text_modal_khoangvay">{{$loan_name->first()->name ?? ''}}</span></p>
+                                    <p>Thời hạn khoản vay <span class="float-end" id="text_modal_tgvay">{{$loan_day->first()->name ?? ''}}</span></p>
                                     <p>Lãi suất hằng tháng <span class="float-end"><span id="text_lai_suat_vay">0.5</span>%</span></p>
                                     <p class="text-danger">Tôi đã đọc hiểu hợp đồng vay và kiểm tra thông tin khoản vay. Sau khi
                                         nhấn nút xác nhận để đăng ký vay, hợp đồng này sẽ có hiệu lực. Nếu vi phạm hợp
@@ -122,14 +129,13 @@
                                     </p>
                                     <a class="btn btn-tim">Xem hợp đồng vay</a>
                                     <p></p>
-                                    <a class="btn btn-full-tim" data-bs-toggle="modal" data-bs-target="#successModal">Xác nhận khoản vay</a>
+                                    <button type="submit" class="btn btn-full-tim" data-bs-toggle="modal" data-bs-target="#successModal">Xác nhận khoản vay</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-              
             <!-- Modal Success Đăng ky-->
             <div class="modal fade" id="successModal">
                 <div class="modal-dialog">
@@ -138,12 +144,51 @@
                             <img src="{{ asset('public/images/user.png') }}" style="position: absolute; top: -55%; left: 36.5%;" width="100px">
                             <p class="p-1"></p>
                             <h4>Chúc mừng!</h4>
-                            <p>Bạn đã đăng ký vay tiền thành công !</p>
+                            <p>Bạn đã đăng ký vay tiền thành công!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Error Đăng ky-->
+            <div class="modal fade" id="errorModal">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top: 350px">
+                        <div class="modal-body text-center">
+                            <img src="{{ asset('public/images/user.png') }}" style="position: absolute; top: -55%; left: 36.5%;" width="100px">
+                            <p class="p-1"></p>
+                            <h4 class="text-danger">Đăng ký vay không thành công!</h4>
+                            <p>Bạn chưa chọn đầy đủ yêu cầu vay!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @csrf
+    </form>
 </main>
+
+@if (session('successModal'))
+<script type="text/javascript">
+    window.onload = function () {
+        OpenBootstrapPopup();
+    };
+    function OpenBootstrapPopup() {
+        $("#successModal").modal('show');
+    }
+</script>
+@endif
+
+
+@if (session('errorModal'))
+<script type="text/javascript">
+    window.onload = function () {
+        OpenBootstrapPopup();
+    };
+    function OpenBootstrapPopup() {
+        $("#errorModal").modal('show');
+    }
+</script>
+@endif
 @endsection
+
