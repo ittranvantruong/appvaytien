@@ -16,13 +16,13 @@ class CreateUserInfoTable extends Migration
         Schema::create('user_info', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->unsigned();
-            $table->string('fullname');
-            $table->string('identity_number');
-            $table->string('education');
-            $table->string('personal_income');
-            $table->string('purpose');
-            $table->boolean('private_apartment');
-            $table->boolean('private_car');
+            $table->string('fullname')->nullable();
+            $table->string('identity_number')->nullable();
+            $table->string('education')->nullable();
+            $table->string('personal_income')->nullable();
+            $table->string('purpose')->nullable();
+            $table->boolean('private_apartment')->nullable();
+            $table->boolean('private_car')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('CASCADE');
         });

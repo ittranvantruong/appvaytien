@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 08, 2022 lúc 08:42 AM
+-- Thời gian đã tạo: Th6 09, 2022 lúc 06:16 AM
 -- Phiên bản máy phục vụ: 10.4.14-MariaDB
 -- Phiên bản PHP: 7.4.10
 
@@ -42,7 +42,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', NULL, '$2y$10$vya0JOhmiwt0D/GSdoDMU.dkNaymBALlG39DWWAm42bzwUCvbRGQm', NULL, NULL, NULL);
+(1, 'admin', NULL, '$2y$10$TG6Ffo5uRO.2eokUizmQzu9H7EHISZRkzyM6q0VWwvhf6tG2celQC', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -106,21 +106,21 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(16, '2014_10_12_000000_create_users_table', 1),
-(17, '2014_10_12_100000_create_password_resets_table', 1),
-(18, '2019_08_19_000000_create_failed_jobs_table', 1),
-(19, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(20, '2022_06_06_070219_create_user_info_table', 1),
-(21, '2022_06_06_071134_create_user_bank_table', 1),
-(22, '2022_06_06_072035_create_admins_table', 1),
-(23, '2022_06_06_072403_create_wallets_table', 1),
-(24, '2022_06_06_073222_create_loan_amount_table', 1),
-(25, '2022_06_06_073635_create_loan_period_table', 1),
-(26, '2022_06_06_074034_create_user_loan_amount_table', 1),
-(27, '2022_06_06_075019_create_user_loan_repayment_table', 1),
-(28, '2022_06_06_075543_create_user_withdrawal_progress_table', 1),
-(29, '2022_06_06_075816_create_settings_table', 1),
-(30, '2022_06_06_091413_create_user_verify_table', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2022_06_06_070219_create_user_info_table', 1),
+(6, '2022_06_06_071134_create_user_bank_table', 1),
+(7, '2022_06_06_072035_create_admins_table', 1),
+(8, '2022_06_06_072403_create_wallets_table', 1),
+(9, '2022_06_06_073222_create_loan_amount_table', 1),
+(10, '2022_06_06_073635_create_loan_period_table', 1),
+(11, '2022_06_06_074034_create_user_loan_amount_table', 1),
+(12, '2022_06_06_075019_create_user_loan_repayment_table', 1),
+(13, '2022_06_06_075543_create_user_withdrawal_progress_table', 1),
+(14, '2022_06_06_075816_create_settings_table', 1),
+(15, '2022_06_06_091413_create_user_verify_table', 1);
 
 -- --------------------------------------------------------
 
@@ -167,6 +167,18 @@ CREATE TABLE `settings` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `settings`
+--
+
+INSERT INTO `settings` (`id`, `key`, `plain_value`, `type_input`, `created_at`, `updated_at`) VALUES
+(1, 'site_name', 'Travel', '0', NULL, NULL),
+(2, 'site_logo', 'public/images/logo-default.png', '3', NULL, NULL),
+(3, 'site_hotline', '0379266997', '0', NULL, NULL),
+(4, 'site_zalo', '0379266997', '0', NULL, NULL),
+(5, 'site_facebook', '0379266997', '1', NULL, NULL),
+(6, 'site_introduce', '', '2', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -176,7 +188,9 @@ CREATE TABLE `settings` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `verified` tinyint(1) NOT NULL DEFAULT 0,
+  `refs` bigint(20) UNSIGNED DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -193,10 +207,10 @@ CREATE TABLE `users` (
 CREATE TABLE `user_bank` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `name_owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `identity_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_owner` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `identity_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -210,13 +224,13 @@ CREATE TABLE `user_bank` (
 CREATE TABLE `user_info` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `identity_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `education` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `personal_income` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `purpose` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `private_apartment` tinyint(1) NOT NULL,
-  `private_car` tinyint(1) NOT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `identity_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `education` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `personal_income` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `purpose` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `private_apartment` tinyint(1) DEFAULT NULL,
+  `private_car` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -368,7 +382,9 @@ ALTER TABLE `settings`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_phone_unique` (`phone`);
+  ADD UNIQUE KEY `users_phone_unique` (`phone`),
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `users_refs_foreign` (`refs`);
 
 --
 -- Chỉ mục cho bảng `user_bank`
@@ -453,7 +469,7 @@ ALTER TABLE `loan_period`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -465,7 +481,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
@@ -518,6 +534,12 @@ ALTER TABLE `wallets`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_refs_foreign` FOREIGN KEY (`refs`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
 -- Các ràng buộc cho bảng `user_bank`

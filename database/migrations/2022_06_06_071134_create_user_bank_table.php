@@ -16,10 +16,10 @@ class CreateUserBankTable extends Migration
         Schema::create('user_bank', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name_owner');
-            $table->string('identity_number');
-            $table->string('name');
-            $table->string('number');
+            $table->string('name_owner')->nullable();
+            $table->string('identity_number')->nullable();
+            $table->string('name')->nullable();
+            $table->string('number')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('CASCADE');
