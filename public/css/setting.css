@@ -67,3 +67,7 @@ a:hover {
 #foot_khoanvay p{
     font-size: 12px;
 }
+
+footer {
+    display: none !important;
+}

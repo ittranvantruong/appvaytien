@@ -10,7 +10,7 @@
                 <p class="m-0">phê duyệt trong 10 phút</p>
             </div>
             <div class="col-4">
-                <img class="pt-2" src="{{ asset('public/images/dore.png') }}" style="position: absolute; z-index: 1; width: 30%;">
+                <img class="pt-2" src="{{ asset('public/images/dore.png') }}" style="position: absolute; z-index: 1; width: 29%;">
             </div>
         </div>
     </section>
@@ -21,7 +21,7 @@
             <div class="col-12">
                 <h6 class="m-0"><strong>Khoản vay ước tính (Đồng)</strong></h6>
                 <h3 class="m-0" id="gia_tien">
-                    10 triệu đến 50 triệu
+                    {{$loan_name->first()->name}}
                 </h3>
             </div>
             <div class="col-6">
@@ -30,7 +30,7 @@
                         <i class="fa fa-home" style="font-size: 40px;"></i>
                     </div>
                     <div class="col-9">
-                        <p class="m-0 pt-1">0.5%</p>
+                        <p class="m-0 pt-1"><span id="laisuat">{{$loan_day->first()->interest_rate}}</span>%</p>
                         <p class="m-0 fs-10">lãi suất tháng</p>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <i class="fa fa-home" style="font-size: 40px;"></i>
                     </div>
                     <div class="col-9 pt-1">
-                        <p class="m-0" id="thoi-gian-vay">12 tháng</p>
+                        <p class="m-0" id="thoi-gian-vay">{{$loan_day->first()->name}}</p>
                         <p class="m-0 fs-10">thời hạn khoản vay</p>
                     </div>
                 </div>
@@ -64,37 +64,12 @@
 
             <div id="group_khoanvay">
                 <div class="row pb-2">
-                    <div class="col-4">
-                        <input class="btn btn-tim khoanvay" type="button" id="10-50tr"
-                            value="10 đến 50 triệu" onclick="changeText(this.value);"/>
+                    @foreach($loan_name as $value)
+                    <div class="col-6 pb-2">
+                        <input class="btn btn-tim khoanvay" type="button"
+                            value="{{$value->name}}" onclick="changeText(this.value);"/>
                     </div>
-
-                    <div class="col-4">
-                        <input class="btn btn-tim khoanvay" type="button" id="50-100tr"
-                            value="50 đến 100 triệu" onclick="changeText(this.value);"/>
-                    </div>
-
-                    <div class="col-4">
-                        <input class="btn btn-tim khoanvay" type="button" 
-                            value="100 đến 300 triệu" onclick="changeText(this.value);"/>
-                    </div>
-                </div>
-
-                <div class="row pb-2">
-                    <div class="col-4">
-                        <input class="btn btn-tim khoanvay" type="button" 
-                            value="300 đến 500 triệu" onclick="changeText(this.value);"/>
-                    </div>
-
-                    <div class="col-4">
-                        <input class="btn btn-tim khoanvay" type="button" 
-                            value="500 đến 1 tỷ" onclick="changeText(this.value);"/>
-                    </div>
-
-                    <div class="col-4">
-                        <input class="btn btn-tim khoanvay" type="button" 
-                            value="1 tỷ trở lên" onclick="changeText(this.value);"/>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -110,24 +85,12 @@
 
             <div id="group_thoigian">
                 <div class="row pb-2">
-                    <div class="col-6">
+                    @foreach ($loan_day as $value)
+                    <div class="col-6 pb-2">
                         <input class="btn btn-tim thoigianvay" type="button" 
-                            value="12 tháng" onclick="thoiGianVay(this.value);"/>
+                            value="{{$value->name}}" onclick="thoiGianVay(this.value, {{$value->interest_rate}});"/>
                     </div>
-                    <div class="col-6">
-                        <input class="btn btn-tim thoigianvay" type="button" 
-                            value="18 tháng" onclick="thoiGianVay(this.value);"/>
-                    </div>
-                </div>
-                <div class="row pb-2">
-                    <div class="col-6">
-                        <input class="btn btn-tim thoigianvay" type="button" 
-                            value="24 tháng" onclick="thoiGianVay(this.value);"/>
-                    </div>
-                    <div class="col-6">
-                        <input class="btn btn-tim thoigianvay" type="button" 
-                            value="36 tháng" onclick="thoiGianVay(this.value);"/>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -150,9 +113,9 @@
                                     <p>Tên người vay <span class="float-end">Trần Kim Anh Tuấn</span></p>
                                     <p>Số CMND <span class="float-end">2123456789</span></p>
                                     <p>Số điện thoại <span class="float-end">0123456789</span></p>
-                                    <p>Hạn mức khoản vay <span class="float-end" id="text_modal_khoangvay">10 đến 50 triệu</span></p>
-                                    <p>Thời hạn khoản vay <span class="float-end" id="text_modal_tgvay">12 tháng</span></p>
-                                    <p>Lãi suất hằng tháng <span class="float-end">0.5%</span></p>
+                                    <p>Hạn mức khoản vay <span class="float-end" id="text_modal_khoangvay">{{$loan_name->first()->name}}</span></p>
+                                    <p>Thời hạn khoản vay <span class="float-end" id="text_modal_tgvay">{{$loan_day->first()->name}}</span></p>
+                                    <p>Lãi suất hằng tháng <span class="float-end"><span id="text_lai_suat_vay">0.5</span>%</span></p>
                                     <p class="text-danger">Tôi đã đọc hiểu hợp đồng vay và kiểm tra thông tin khoản vay. Sau khi
                                         nhấn nút xác nhận để đăng ký vay, hợp đồng này sẽ có hiệu lực. Nếu vi phạm hợp
                                         đồng vì lý do cá nhân, tôi sẵn sàng chịu mọi trách nhiệm pháp lý.

@@ -74,30 +74,33 @@
 
                 <!-- Tab đăng ký ở đây -->
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">
-                            <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Vui lòng nhập số điện thoại của bạn">
-                    </div>
-                    <p></p>
+                    <form method="POST" action="{{url('/register')}}">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default">
+                                <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control" name="phone" placeholder="Vui lòng nhập số điện thoại của bạn">
+                        </div>
+                        <p></p>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Vui lòng nhập mật khẩu của bạn">
-                    </div>
-                    <p></p>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </span>
+                            <input type="password" class="form-control" name="password" placeholder="Vui lòng nhập mật khẩu của bạn">
+                        </div>
+                        <p></p>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-default">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Vui lòng nhập mã mời">
-                    </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Vui lòng nhập mã mời">
+                        </div>
 
-                    <button class="btn btn-full-tim" type="submit" >Đăng ký ngay</button>
+                        <button class="btn btn-full-tim" type="submit" >Đăng ký ngay</button>
+                    @csrf
+                    </form>
                 </div>
 
 
