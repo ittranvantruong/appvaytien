@@ -10,10 +10,10 @@
                 <img class="pt-2" src="{{ asset('public/images/dore.png') }}" width="100%">
             </div>
             <div class="col-8 text-end">
-                <h5><a href="./setting/setting.html"><i class="fa fa-cog" aria-hidden="true"></i></a></h5>
+                <h5><a href="{{url('/setting')}}"><i class="fa fa-cog" aria-hidden="true"></i></a></h5>
                 <p class="p-1"></p>
-                <h6><strong>Trần Kim Anh Tuấn</strong></h6>
-                <h6 class="m-0">093.5144.123</h6>
+                <h6><strong>{{$user->info->fullname}}</strong></h6>
+                <h6 class="m-0">{{$user->phone}}</h6>
             </div>
         </div>
     </section>
@@ -33,13 +33,13 @@
 
             <div class="row">
                 <div class="col-12 pb-2">
-                    <a href="wallet.html" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
-                        1.200.000.000
+                    <a href="{{url('/wallet')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                        {{number_format($user->wallet->amount)}} VNĐ
                         <span class="float-end">Số dư trong ví <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="./profile/profile.html" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="{{url('/xacminh')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         Đã xác nhận
                         <span class="float-end">Xác minh tên thật <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
@@ -55,8 +55,7 @@
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="tuvan.html" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
-                        
+                    <a href="{{url('tuvan')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         <span class="float-end">Chăm sóc khách hàng trực tuyến <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>

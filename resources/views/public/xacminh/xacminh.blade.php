@@ -1,0 +1,75 @@
+@extends('public.layouts.master')
+@section('title', 'Cài đặt')
+@push('css')
+<link href="{{ asset('public/css/setting.css') }}" rel="stylesheet" type="text/css">
+@endpush
+@section('content')
+<main>
+    <header class="position-relative p-0">
+        <h3 class="text-center text-uppercase text-purple p-3">Xác minh tên thật</h3>
+        <h3 id="button_back"><a class="text-purple" href="{{url('./hoso')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+    </header>
+
+    <div class="container">
+        <a href="{{url('/info_canhan')}}">
+            <div class="row">
+                <span>Thông tin cá nhân
+                    <span class="text-muted float-end">
+                        @if ( $user->info->email != null )
+                        Thành công
+                        @else
+                        Chưa hoàn thành
+                        @endif
+                        <i class="fa fa-chevron-right"></i></span>
+                </span>
+            </div>
+        </a>
+    </div>
+
+    <div class="container">
+        <a href="{{url('thongtin')}}">
+            <div class="row">
+                <span>Thông tin 
+                    <span class="text-muted float-end">
+                        @if ( ($user->info->education && $user->info->personal_income &&
+                            $user->info->private_apartment) != null )
+                        Thành công
+                        @else
+                        Chưa hoàn thành
+                        @endif
+                        <i class="fa fa-chevron-right"></i></span>
+                </span>
+            </div>
+        </a>
+    </div>
+
+    <div class="container">
+        <a href="{{url('bank')}}">
+            <div class="row">
+                <span>Thẻ ngân hàng
+                    <span class="text-muted float-end">
+                        @if ( ($user->bank->name && $user->bank->number &&
+                            $user->bank->identity_number && 
+                            $user->bank->name_owner) != null )
+                        Thành công
+                        @else
+                        Chưa hoàn thành
+                        @endif
+                        <i class="fa fa-chevron-right"></i></span>
+                </span>
+            </div>
+        </a>
+    </div>
+
+    <div class="container">
+        <a href="{{url('phone')}}">
+            <div class="row">
+                <span>Điện thoại xác thực
+                    <span class="text-muted float-end">Thành công 
+                        <i class="fa fa-chevron-right"></i></span>
+                </span>
+            </div>
+        </a>
+    </div>
+</main>
+@endsection

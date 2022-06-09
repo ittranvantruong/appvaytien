@@ -9,8 +9,9 @@
                 <img class="pt-2" src="{{ asset('public/images/dore.png') }}" width="100%">
             </div>
             <div class="col-8 text-center">
-                <h6><strong>Số dư tài khoản(đồng)</strong></h6>
-                <h5 class="m-0"><i class="fa fa-money" aria-hidden="true"></i> 1.200.000.000</h5>
+                <h6><strong>Số dư tài khoản (đồng)</strong></h6>
+                <h5 class="m-0"><i class="fa fa-money" aria-hidden="true"></i> 
+                    {{number_format($user->wallet->amount)}} VNĐ</h5>
                 <p></p>
                 <a class="btn btn-tim text-dark" style="width:50%">Rút tiền ngay</a>
             </div>

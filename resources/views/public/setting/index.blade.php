@@ -7,10 +7,10 @@
 <main>
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">Cài đặt</h3>
-        <h3 id="button_back"><a class="text-purple" href="../hoso.html"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{url('./hoso')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     <div class="container">
-        <a href="./change_password.html">
+        <a href="{{url('password')}}">
             <div class="row">
                 <span>Thay đổi mật khẩu đăng nhập 
                     <span class="text-muted float-end">
@@ -21,7 +21,7 @@
     </div>
     
     <div class="container">
-        <a href="./about_us.html">
+        <a href="{{url('about-us')}}">
             <div class="row">
                 <span>Về chúng tôi<span class="text-muted float-end">
                     <i class="fa fa-chevron-right"></i></span></span>
@@ -34,7 +34,7 @@
     </div>
     
     <div class="container">
-        <a href="#">
+        <a href="{{url('logout')}}">
             <div class="row">
                 <span>Đăng xuất<span class="text-muted float-end">
                     <i class="fa fa-chevron-right"></i></span></span>

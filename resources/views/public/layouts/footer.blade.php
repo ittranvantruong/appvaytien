@@ -4,22 +4,22 @@
     <div class="container">
         <div class="row">
             <div class="col-3 text-center">
-                <a href="./index.html">
+                <a href="{{url('/')}}">
                     <i class="fa fa-home" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="col-3 text-center">
-                <a href="./wallet.html">
+                <a href="{{url('/wallet')}}">
                     <i class="fa fa-google-wallet" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="col-3 text-center">
-                <a href="./tuvan.html">
+                <a href="{{url('/tuvan')}}">
                     <i class="fa fa-mobile" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="col-3 text-center">
-                <a href="./hoso.html">
+                <a href="{{url('/hoso')}}">
                     <i class="fa fa-user" aria-hidden="true"></i>
                 </a>
             </div>
