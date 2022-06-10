@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            @if ($user->verified == 0)
+            @if ($user->verified == 1)
             <a class="btn btn-full-tim" data-bs-toggle="modal" data-bs-target="#dangkykhoanvay">
                 Đăng ký khoản vay
             </a>
