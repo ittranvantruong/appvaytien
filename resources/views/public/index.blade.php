@@ -1,4 +1,5 @@
 @extends('public.layouts.master')
+@section('title', 'Trang chủ')
 @section('content')
 <main>
     <p class="p-2"></p>
@@ -96,7 +97,7 @@
                 </div>
             </div>
 
-            @if ($user->verified == 1)
+            @if ($user->verified == 0)
             <a class="btn btn-full-tim" data-bs-toggle="modal" data-bs-target="#dangkykhoanvay">
                 Đăng ký khoản vay
             </a>
@@ -190,5 +191,6 @@
     }
 </script>
 @endif
+<script src="{{ asset('public/js/home.js') }}"></script>
 @endsection
 

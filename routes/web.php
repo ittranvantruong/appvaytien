@@ -22,6 +22,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/wallet', [WalletController::class, 'getWallet'])->name('wallet');
 
     //======================= Group Page Setting ===============================
+    Route::get('/tra-no', [HomeController::class, 'getTrano']);
+    Route::get('/khoan-vay', [HomeController::class, 'getKhoanvay']);
+
+    //======================= Group Page Setting ===============================
     Route::get('/xacminh', [UserController::class, 'getXacminh'])->name('xacminh');
 
     Route::get('/info_canhan', [UserController::class, 'getInfo_canhan']);

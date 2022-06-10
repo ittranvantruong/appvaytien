@@ -45,12 +45,12 @@
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="./vay/khoanvay.html" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="{{url('/khoan-vay')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         <span class="float-end">Khoản vay của tôi <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="./vay/trano.html" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="{{url('/tra-no')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         <span class="float-end">Trả nợ của tôi <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>

@@ -26,6 +26,5 @@
         </div>
     </div>
 </footer>
-<script src="{{ asset('public/js/home.js') }}"></script>
 
 </html>

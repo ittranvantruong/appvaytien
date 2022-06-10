@@ -34,6 +34,7 @@ class HomeController extends Controller
         if ( $request->loan_amount == null || $request->loan_period == null ) {
             return back()->with('errorModal', 'Nhập thiếu info vay');
         }
+
         $user_loan_amount = new UserLoanAmount;
         $user_loan_amount->loan_amount = $request->loan_amount;
         $user_loan_amount->loan_period = $request->loan_period;
@@ -42,8 +43,28 @@ class HomeController extends Controller
         $user_loan_amount->fullname = $user->info->fullname;
         $user_loan_amount->identity_number = $user->info->identity_number;
         $user_loan_amount->phone = $user->phone;
+        $user_loan_amount->code = $this->generateUniqueCode();
         $user_loan_amount->save();
 
         return back()->with('successModal', 'Đăng ký vay thành công');
+    }
+
+    public function generateUniqueCode()
+    {
+        do {
+            $code = 'RIDDLER'.random_int(100000000, 999999999);
+        } while (UserLoanAmount::where("code", "=", $code)->first());
+        return $code;
+    }
+
+    public function getKhoanvay() {
+        $user_loan_amount = UserLoanAmount::where('user_id', auth()->user()->id)->get();
+        return view('public.loan.khoanvay', compact('user_loan_amount'));
+    }
+
+    public function getTrano() {
+        $user_loan_amount = UserLoanAmount::where('user_id', auth()->user()->id)
+            ->with('repayment')->get();
+        return view('public.loan.trano', compact('user_loan_amount'));
     }
 }
