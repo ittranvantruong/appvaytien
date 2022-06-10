@@ -24,12 +24,12 @@ class SignupController extends Controller
             'password.required' => 'Bạn chưa nhập mật khẩu!',
         ];
 
-        $info = $request->validate([
+        $this->validate($request, [
             'phone' => 'required',
             'password' => 'required',
         ], $error);
 
-        if (Auth::attempt($info)) {
+        if (Auth::attempt($request->only('phone', 'password'))) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
@@ -38,40 +38,25 @@ class SignupController extends Controller
     }
 
     public function postRegister(Request $request) {
+        
         $error = [
-            'phone.required' => 'Mời nhập phone!',
-            'phone.unique' => 'Số phone bị trùng!',
-            'phone.digits_between' => 'Số điện thoại đăng ký không hợp lệ!',
-            'password.required' => 'Mời nhập mật khẩu!',
-            'password.min' => 'Mật khẩu phải có ít nhất 6 chữ số!'
+            'phone.required' => 'Bạn chưa nhập số điện thoại!',
+            'phone.unique' => 'Số điện thoại đã có người đăng ký !',
+            'password.required' => 'Bạn chưa nhập mật khẩu!',
         ];
-
-        $request->validate([
-            'phone' => 'digits_between:7,11|unique:users|required',
-            'password' => 'required|min:6',
+        $this->validate($request, [
+            'phone' => ['required', 'regex:/((09|03|07|08|05)+([0-9]{8})\b)/', 'unique:App\Models\User,phone'],
+            'password' => 'required',
         ], $error);
+        $data = $request->only('phone', 'password');
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
 
-        $user = new User();
-        $user->phone = $request->phone;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $bank = $user->bank()->create();
+        $info = $user->info()->create();
+        $wallet = $user->wallet()->create();
+        $verify = $user->verify()->create();
 
-        $bank = new Userbank;
-        $bank->user_id = $user->id;
-        $bank->save();
-
-        $user_info = new UserInfo;
-        $user_info->user_id = $user->id;
-        $user_info->save();
-
-        $wallet = new Wallet;
-        $wallet->user_id = $user->id;
-        $wallet->save();
-
-        $verified = new UserVerify;
-        $verified->user_id = $user->id;
-        $verified->save();
-
-        return back()->with('mess', 'Chúc mừng!');
+        return back()->with('success', 'Bạn đã đăng ký thành công!');
     }
 }

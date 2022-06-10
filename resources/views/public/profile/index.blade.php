@@ -33,34 +33,34 @@
 
             <div class="row">
                 <div class="col-12 pb-2">
-                    <a href="{{url('/wallet')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="{{ route('wallet') }}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         {{number_format($user->wallet->amount)}} VNĐ
                         <span class="float-end">Số dư trong ví <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="{{url('/xacminh')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="{{ route('verify')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         Đã xác nhận
                         <span class="float-end">Xác minh tên thật <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="./vay/khoanvay.html" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="{{ route('user.loan.amount') }}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         <span class="float-end">Khoản vay của tôi <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="./vay/trano.html" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="#" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         <span class="float-end">Trả nợ của tôi <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="{{url('tuvan')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="{{ route('advise')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         <span class="float-end">Chăm sóc khách hàng trực tuyến <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>
                 <div class="col-12 pb-2">
-                    <a href="" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                    <a href="#" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         
                         <span class="float-end">Câu hỏi thường gặp <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>

@@ -1,4 +1,5 @@
 @extends('public.layouts.master')
+@section('title', 'Trang chủ')
 @section('content')
 <main>
     <p class="p-2"></p>
@@ -191,4 +192,7 @@
 </script>
 @endif
 @endsection
+@push('js')
+<script src="{{ asset('public/js/home.js') }}"></script>
+@endpush
 

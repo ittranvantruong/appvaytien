@@ -8,10 +8,10 @@
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">
             Thông tin</h3>
-        <h3 id="button_back"><a class="text-purple" href="{{url('xacminh')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('verify') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     
-    <form action="{{url('thongtin')}}" method="POST">
+    <form action="{{ route('post.info') }}" method="POST">
         <div class="container">
             <a href="#">Học vấn</a>
             <span class="float-end">
@@ -29,11 +29,11 @@
         <div class="container">
             <a href="#">Thu nhập cá nhân</a>
             <span class="float-end text-muted">
-                <input type="number" name="personal_income"
+                <input type="text" name="personal_income"
                     class="form-control text-end ip_pass"
                     value="{{$user->info->personal_income}}"
                     @if ($user->info->personal_income != null)
-                    placeholder="{{number_format($user->info->personal_income)}}"
+                    placeholder="{{ $user->info->personal_income }}"
                     @else
                     placeholder="Nhập thu nhập"
                     @endif >
@@ -41,7 +41,7 @@
         </div>
 
         <div class="container">
-            <a href="#">Mục đích khoản vay</a>
+            <a href="#">Mục đích</a>
             <span class="float-end text-muted">
                 <input type="text" name="purpose"
                     class="form-control text-end ip_pass"

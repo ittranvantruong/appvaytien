@@ -35,6 +35,7 @@ class HomeController extends Controller
             return back()->with('errorModal', 'Nhập thiếu info vay');
         }
         $user_loan_amount = new UserLoanAmount;
+        $user_loan_amount->code = config('custom.code_user_loan_amount').time();
         $user_loan_amount->loan_amount = $request->loan_amount;
         $user_loan_amount->loan_period = $request->loan_period;
         $user_loan_amount->interest_rate = $request->interest_rate;

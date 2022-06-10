@@ -9,10 +9,10 @@
         <h3 class="text-center text-uppercase text-purple p-3">
             Thẻ ngân hàng
         </h3>
-        <h3 id="button_back"><a class="text-purple" href="{{url('xacminh')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('verify') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     
-    <form action="{{url('/bank')}}" method="POST">
+    <form action="{{ route('post.bank') }}" method="POST">
         <div class="container">
             <a href="#">Tên chủ thẻ</a>
             <span class="float-end">

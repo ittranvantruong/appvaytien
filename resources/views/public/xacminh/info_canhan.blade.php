@@ -7,10 +7,10 @@
 <main>
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">Thông tin cá nhân</h3>
-        <h3 id="button_back"><a class="text-purple" href="{{url('xacminh')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('verify') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     
-    <form action="{{ url('info_canhan')}}" method="POST">
+    <form action="{{ route('post.info.persional') }}" method="POST">
         <div class="container">
             <a href="#">Tên thật</a>
             <span class="float-end">

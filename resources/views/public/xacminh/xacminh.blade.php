@@ -1,5 +1,5 @@
 @extends('public.layouts.master')
-@section('title', 'Cài đặt')
+@section('title', 'Xác minh danh tính')
 @push('css')
 <link href="{{ asset('public/css/setting.css') }}" rel="stylesheet" type="text/css">
 @endpush
@@ -7,11 +7,11 @@
 <main>
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">Xác minh tên thật</h3>
-        <h3 id="button_back"><a class="text-purple" href="{{url('./hoso')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('profile') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
 
     <div class="container">
-        <a href="{{url('/info_canhan')}}">
+        <a href="{{ route('info.persional') }}">
             <div class="row">
                 <span>Thông tin cá nhân
                     <span class="text-muted float-end">
@@ -29,7 +29,7 @@
     </div>
 
     <div class="container">
-        <a href="{{url('thongtin')}}">
+        <a href="{{ route('info') }}">
             <div class="row">
                 <span>Thông tin 
                     <span class="text-muted float-end">
@@ -48,7 +48,7 @@
     </div>
 
     <div class="container">
-        <a href="{{url('bank')}}">
+        <a href="{{ route('bank') }}">
             <div class="row">
                 <span>Thẻ ngân hàng
                     <span class="text-muted float-end">
@@ -68,7 +68,7 @@
     </div>
 
     <div class="container">
-        <a href="{{url('phone')}}">
+        <a href="{{ route('phone') }}">
             <div class="row">
                 <span>Điện thoại xác thực
                     <span class="text-muted float-end">

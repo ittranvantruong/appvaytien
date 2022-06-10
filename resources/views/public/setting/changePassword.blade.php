@@ -7,16 +7,16 @@
 <main>
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">Đổi mật khẩu</h3>
-        <h3 id="button_back"><a class="text-purple" href="{{url('./setting')}}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('setting') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     
-    <form method="POST" action="{{url('password')}}">
+    <form method="POST" action="{{ route('post.change.password') }}">
         <div class="container">
             <a>Mật khẩu cũ</a>
             <span class="float-end">
                 <input type="password" name="mkcu"
                     class="form-control text-end ip_pass"
-                    placeholder="Nhập mật khẩu cũ">
+                    placeholder="Nhập mật khẩu cũ" required>
             </span>
         </div>
 
@@ -25,7 +25,7 @@
             <span class="float-end">
                 <input type="password" name="mkmoi"
                     class="form-control text-end ip_pass"
-                    placeholder="Nhập lại mật khẩu mới">
+                    placeholder="Nhập lại mật khẩu mới" required>
             </span>
         </div>
 
@@ -34,7 +34,7 @@
                 <span class="float-end">
                     <input type="password" name="nhaplai"
                         class="form-control text-end ip_pass"
-                        placeholder="Xác nhận mật khẩu">
+                        placeholder="Xác nhận mật khẩu" required>
                 </span>
             </a>
         </div>

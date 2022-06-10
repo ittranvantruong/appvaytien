@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #28113d;
+    background: #28113d; 
     overflow: hidden;
 }
 
@@ -134,7 +134,7 @@ footer a:active:after {
 
 #bkimg_money .col-8::after {
     content: "";
-    background-image: url('../img/bag.png');
+    background-image: url('../images/bag.png');
     background-size: contain;
     opacity: 0.2;
     top: 0;

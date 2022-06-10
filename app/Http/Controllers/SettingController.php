@@ -25,18 +25,18 @@ class SettingController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect()->route('login');
     }
 
     public function getAboutUs() {
         return view('public.setting.about_us');
     }
 
-    public function getPassword() {
+    public function changePassword() {
         return view('public.setting.changePassword');
     }
 
-    public function postPassword(Request $request)
+    public function postChangePassword(Request $request)
     {
         $error = [
             'mkcu.required' => 'Nhập mật khẩu cũ!',
@@ -45,9 +45,9 @@ class SettingController extends Controller
             'nhaplai.required' => 'Nhập lại mật khẩu không đúng!',
             'nhaplai.same' => 'Nhập lại mật khẩu không đúng!',
         ];
-        $request->validate([
+        $this->validate($request, [
             'mkcu' => 'required',
-            'mkmoi' => 'required|min:6',
+            'mkmoi' => 'required',
             'nhaplai' => 'required|same:mkmoi',
         ], $error);
 
@@ -56,8 +56,8 @@ class SettingController extends Controller
         if (Hash::check($request->mkcu, $user->password)) {
             $user->password = Hash::make($request->mkmoi);
             $user->save();
-            return $this->getLogout($request)->with('matkhau', 'Đổi mật khẩu thành công. Hệ thống tự động đăng xuất!');
+            return $this->getLogout($request)->with('success', 'Đổi mật khẩu thành công. Hệ thống tự động đăng xuất!');
         }
-        return back()->withErrors(['msg' => 'Mật khẩu cũ không đúng!']);
+        return back()->withErrors(['error' => 'Mật khẩu cũ không đúng!']);
     }
 }

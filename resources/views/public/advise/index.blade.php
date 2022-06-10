@@ -12,8 +12,7 @@
         <h6 class="text-white">Thời gian phục vụ</h6>
         <h6 class="text-white">Hằng ngày từ 09:00 đến 21:00</h6>
         <p></p>
-        <a class="btn btn-tim text-center text-dark" href="https://zalo.me/0835221114"
-            style="width: 25%">
+        <a class="btn btn-tim text-center text-dark" href="https://zalo.me/{{ optional($zalo)->plain_value }}" target="_blank" style="width: 25%">
             <i class="fa fa-arrow-right" style="font-size: 24px"></i>
         </a>
     </section>
