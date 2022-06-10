@@ -6,16 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
     <link href="{{ asset('public/lib/bootstrap-5.0.2/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-
     <script src="{{ asset('public/lib/jquery/jquery.min.js') }}"></script>
-
-    <script src="{{ asset('public/lib/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js') }}">
-    </script>
-
+    <script src="{{ asset('public/lib/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link href="{{ asset('public/css/home.css') }}" rel="stylesheet" type="text/css">
-
 </head>
 <body>
 <main>
@@ -91,19 +85,46 @@
                         </div>
                         <p></p>
 
-                        <div class="input-group mb-3">
+                        <!-- <div class="input-group mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-default">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                             </span>
                             <input type="text" class="form-control" placeholder="Vui lòng nhập mã mời">
-                        </div>
+                        </div> -->
 
                         <button class="btn btn-full-tim" type="submit" >Đăng ký ngay</button>
                     @csrf
                     </form>
                 </div>
 
+                <!-- Modal Error Đăng ky-->
+                <div class="modal fade" id="error">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="margin-top: 350px">
+                            <div class="modal-body text-center">
+                                <img src="{{ asset('public/images/user.png') }}" style="position: absolute; top: -55%; left: 36.5%;" width="100px">
+                                <p class="p-1"></p>
+                                <h4 class="text-danger">Đăng nhập không thành công!</h4>
+                                <p id="mess_here"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Modal Success Đăng ky-->
+                <div class="modal fade" id="success">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="margin-top: 350px">
+                            <div class="modal-body text-center">
+                                <img src="{{ asset('public/images/user.png') }}" style="position: absolute; top: -55%; left: 36.5%;" width="100px">
+                                <p class="p-1"></p>
+                                <h4 class="text-danger">Đăng ký thành công!</h4>
+                                <p id="mess_here">Chúc mừng bạn đã đăng ký 
+                                    tài khoản thành công. Đăng nhập ngay để sử dụng các chức năng của chúng tôi!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -112,4 +133,38 @@
 
 <script src="{{ asset('public/js/home.js') }}"></script>
 
+@if (session('mess'))
+<script type="text/javascript">
+    window.onload = function () {
+        OpenBootstrapPopup();
+    };
+    function OpenBootstrapPopup() {
+        $("#success").modal('show');
+    }
+</script>
+@endif
+
+@error('password')
+<script type="text/javascript">
+    window.onload = function () {
+        OpenBootstrapPopup();
+        document.getElementById('mess_here').innerHTML = '{{ $message }}';
+    };
+    function OpenBootstrapPopup() {
+        $("#error").modal('show');
+    }
+</script>
+@enderror
+
+@error('phone')
+<script type="text/javascript">
+    window.onload = function () {
+        OpenBootstrapPopup();
+        document.getElementById('mess_here').innerHTML = '{{ $message }}';
+    };
+    function OpenBootstrapPopup() {
+        $("#error").modal('show');
+    }
+</script>
+@enderror
 </html>

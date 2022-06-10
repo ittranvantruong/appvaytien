@@ -40,7 +40,9 @@ class UserController extends Controller
             ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
             ->first();
         
-        $user->info->email = $request->email;
+        $user->email = $request->email;
+        $user->save();
+        
         $user->info->fullname = $request->fullname;
         $user->info->identity_number = $request->identity_number;
         $user->info->save();

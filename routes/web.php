@@ -15,6 +15,8 @@ Route::get('logout', [SettingController::class, 'getLogout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('HomePage');
+    Route::post('/order', [HomeController::class, 'postLoan']);
+
     Route::get('/hoso', [UserController::class, 'getProfile'])->name('Profile');
 
     Route::get('/wallet', [WalletController::class, 'getWallet'])->name('wallet');

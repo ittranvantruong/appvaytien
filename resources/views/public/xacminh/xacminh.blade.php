@@ -15,7 +15,9 @@
             <div class="row">
                 <span>Thông tin cá nhân
                     <span class="text-muted float-end">
-                        @if ( $user->info->email != null )
+                        @if ( ($user->email && $user->info->fullname) != null && $user->verified == 0)
+                        Chờ duyệt
+                        @elseif ($user->verified == 1)
                         Thành công
                         @else
                         Chưa hoàn thành
@@ -32,7 +34,9 @@
                 <span>Thông tin 
                     <span class="text-muted float-end">
                         @if ( ($user->info->education && $user->info->personal_income &&
-                            $user->info->private_apartment) != null )
+                            $user->info->purpose) != null && $user->verified == 0)
+                        Chờ duyệt
+                        @elseif ($user->verified == 1)
                         Thành công
                         @else
                         Chưa hoàn thành
@@ -50,7 +54,9 @@
                     <span class="text-muted float-end">
                         @if ( ($user->bank->name && $user->bank->number &&
                             $user->bank->identity_number && 
-                            $user->bank->name_owner) != null )
+                            $user->bank->name_owner) != null && $user->verified == 0)
+                        Chờ duyệt
+                        @elseif ($user->verified == 1)
                         Thành công
                         @else
                         Chưa hoàn thành
@@ -65,7 +71,12 @@
         <a href="{{url('phone')}}">
             <div class="row">
                 <span>Điện thoại xác thực
-                    <span class="text-muted float-end">Thành công 
+                    <span class="text-muted float-end">
+                        @if ($user->verified == 1)
+                        Thành công 
+                        @else
+                        Chờ duyệt
+                        @endif
                         <i class="fa fa-chevron-right"></i></span>
                 </span>
             </div>
