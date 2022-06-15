@@ -1,9 +1,12 @@
 @extends('public.layouts.master')
 @section('title', 'Trang chủ')
+@push('css')
+<link href="{{ asset('public/css/home.css') }}" rel="stylesheet" type="text/css">
+@endpush
+
 @section('content')
 <main>
-    <p class="p-2"></p>
-    <section class="container" id="content_phu">
+    <section class="container banner pt-4 pb-5 mt-3 mb-2">
         <div class="row">
             <div class="col-8">
                 <h6><strong>Cho vay dễ dàng vay nhanh</strong></h6>
@@ -15,15 +18,15 @@
             </div>
         </div>
     </section>
-    <p class="p-4"></p>
 
-    <form action="{{url('/order')}}" method="POST">
-    <section class="position-relative" id="content_chinh">
+    <section class="position-relative content-main">
+    <form action="{{ route('user.loan.amount.store') }}" method="POST">
+        @csrf
         <div class="row m-3" id="mid_content">
             <div class="col-12">
                 <h6 class="m-0"><strong>Khoản vay ước tính (Đồng)</strong></h6>
                 <h3 class="m-0" id="gia_tien">
-                    {{$loan_name->first()->name ?? ''}}
+                    {{ optional($loan_amount->first())->name ?? '' }}
                 </h3>
             </div>
             <div class="col-6">
@@ -33,7 +36,7 @@
                     </div>
                     <div class="col-9">
                         <p class="m-0 pt-1"><span id="laisuat">
-                            {{$loan_day->first()->interest_rate ?? ''}}</span>%</p>
+                            {{ optional($loan_period->first())->interest_rate ?? '' }}</span>%</p>
                         <p class="m-0 fs-10">lãi suất tháng</p>
                     </div>
                 </div>
@@ -44,7 +47,7 @@
                         <i class="fa fa-home" style="font-size: 40px;"></i>
                     </div>
                     <div class="col-9 pt-1">
-                        <p class="m-0" id="thoi-gian-vay">{{$loan_day->first()->name ?? ''}}</p>
+                        <p class="m-0" id="thoi-gian-vay">{{ optional($loan_period->first())->name ?? '' }}</p>
                         <p class="m-0 fs-10">thời hạn khoản vay</p>
                     </div>
                 </div>
@@ -67,7 +70,7 @@
 
             <div id="group_khoanvay">
                 <div class="row pb-2">
-                    @foreach($loan_name as $value)
+                    @foreach($loan_amount as $value)
                     <div class="col-6 pb-2">
                         <input class="btn btn-tim khoanvay" type="button"
                             value="{{$value->name}}" onclick="changeText(this.value);"/>
@@ -88,7 +91,7 @@
 
             <div id="group_thoigian">
                 <div class="row pb-2">
-                    @foreach ($loan_day as $value)
+                    @foreach ($loan_period as $value)
                     <div class="col-6 pb-2">
                         <input class="btn btn-tim thoigianvay" type="button" 
                             value="{{$value->name}}" onclick="thoiGianVay(this.value, {{$value->interest_rate}});"/>
@@ -107,36 +110,11 @@
             </a>
             @endif
             <!-- Modal Xac Nhan khoan Vay -->
-            <div class="modal fade" id="dangkykhoanvay" style="margin-top: 125px;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" style="text-align: center; width: 100%;">
-                                Đăng ký khoản vay</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>Tên người vay <span class="float-end">Trần Kim Anh Tuấn</span></p>
-                                    <p>Số CMND <span class="float-end">2123456789</span></p>
-                                    <p>Số điện thoại <span class="float-end">0123456789</span></p>
-                                    <p>Hạn mức khoản vay <span class="float-end" id="text_modal_khoangvay">{{$loan_name->first()->name ?? ''}}</span></p>
-                                    <p>Thời hạn khoản vay <span class="float-end" id="text_modal_tgvay">{{$loan_day->first()->name ?? ''}}</span></p>
-                                    <p>Lãi suất hằng tháng <span class="float-end"><span id="text_lai_suat_vay">0.5</span>%</span></p>
-                                    <p class="text-danger">Tôi đã đọc hiểu hợp đồng vay và kiểm tra thông tin khoản vay. Sau khi
-                                        nhấn nút xác nhận để đăng ký vay, hợp đồng này sẽ có hiệu lực. Nếu vi phạm hợp
-                                        đồng vì lý do cá nhân, tôi sẵn sàng chịu mọi trách nhiệm pháp lý.
-                                    </p>
-                                    <a class="btn btn-tim">Xem hợp đồng vay</a>
-                                    <p></p>
-                                    <button type="submit" class="btn btn-full-tim" data-bs-toggle="modal" data-bs-target="#successModal">Xác nhận khoản vay</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('public.modal.index', [
+                'user' => $user, 
+                'loan_amount_first' => optional($loan_amount->first()), 
+                'loan_period_first' => optional($loan_period->first())
+                ])
             <!-- Modal Success Đăng ky-->
             <div class="modal fade" id="successModal">
                 <div class="modal-dialog">
@@ -164,9 +142,9 @@
                 </div>
             </div>
         </div>
-    </section>
-    @csrf
     </form>
+    </section>
+    
 </main>
 
 @if (session('successModal'))
@@ -179,7 +157,6 @@
     }
 </script>
 @endif
-
 
 @if (session('errorModal'))
 <script type="text/javascript">

@@ -7,7 +7,7 @@
             </p>
             <p class="text-muted m-0">
                 {{ $item->code }}
-                <span class="float-end text-purple">{{ statusUserLoanAmount($item->stauts) }}</span>
+                <span class="float-end text-purple">{{ statusUserLoanAmount($item->status) }}</span>
             </p>
         </div>
         <hr>

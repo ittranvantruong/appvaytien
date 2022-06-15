@@ -3,7 +3,7 @@
 @section('content')
 <main>
     <p class="p-2"></p>
-    <section class="container" id="content_phu">
+    <section class="container banner">
         <div class="row" id="bkimg_money">
             <div class="col-4">
                 <img class="pt-2" src="{{ asset('public/images/dore.png') }}" width="100%">
@@ -19,7 +19,7 @@
     </section>
     <p class="p-1"></p>
 
-    <section class="position-relative" id="content_main">
+    <section class="position-relative content-main">
         <div class="container">
             <h5 class="text-center">Thẻ ngân hàng của tôi</h5>
             <img src="{{ asset('public/images/visa.png') }}" width="100%" height="150px">

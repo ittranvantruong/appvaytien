@@ -7,14 +7,16 @@
 <main>
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">Đổi mật khẩu</h3>
-        <h3 id="button_back"><a class="text-purple" href="{{ route('setting') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('setting.index') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     
-    <form method="POST" action="{{ route('post.change.password') }}">
+    <form action="{{ route('update.change.password') }}" method="POST">
+        @method('PUT')
+        @csrf
         <div class="container">
             <a>Mật khẩu cũ</a>
             <span class="float-end">
-                <input type="password" name="mkcu"
+                <input type="password" name="password"
                     class="form-control text-end ip_pass"
                     placeholder="Nhập mật khẩu cũ" required>
             </span>
@@ -23,7 +25,7 @@
         <div class="container">
             <a>Mật khẩu mới</a>
             <span class="float-end">
-                <input type="password" name="mkmoi"
+                <input type="password" name="new_password"
                     class="form-control text-end ip_pass"
                     placeholder="Nhập lại mật khẩu mới" required>
             </span>
@@ -32,7 +34,7 @@
         <div class="container">
             <a>Xác nhận mật khẩu
                 <span class="float-end">
-                    <input type="password" name="nhaplai"
+                    <input type="password" name="new_password_confirmation"
                         class="form-control text-end ip_pass"
                         placeholder="Xác nhận mật khẩu" required>
                 </span>
@@ -41,7 +43,6 @@
         <div class="p-2">
             <button type="submit" class="btn btn-full-tim">Đổi mật khẩu</button>
         </div>
-    @csrf
     </form>
 </main>
 @endsection

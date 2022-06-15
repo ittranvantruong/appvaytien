@@ -33,7 +33,7 @@ class User extends Authenticatable
     }
     
     public function bank(){
-        return $this->hasOne(Userbank::class, 'user_id', 'id');
+        return $this->hasOne(UserBank::class, 'user_id', 'id');
     }
 
     public function info(){

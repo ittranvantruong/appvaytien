@@ -9,10 +9,12 @@
         <h3 class="text-center text-uppercase text-purple p-3">
             Thẻ ngân hàng
         </h3>
-        <h3 id="button_back"><a class="text-purple" href="{{ route('verify') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('profile.verify') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     
-    <form action="{{ route('post.bank') }}" method="POST">
+    <form action="{{ route('profile.update.card.bank') }}" method="POST">
+        @method('PUT')
+        @csrf
         <div class="container">
             <a href="#">Tên chủ thẻ</a>
             <span class="float-end">
@@ -72,7 +74,6 @@
         <div class="m-2">
             <button class="btn btn-full-tim">Xác nhận thông tin</button>
         </div>
-    @csrf
     </form>
 </main>
 @endsection

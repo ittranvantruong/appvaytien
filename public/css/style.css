@@ -1,0 +1,125 @@
+@media (min-width: 768px) {
+    body {
+        display: none;
+    }
+}
+
+body {
+    background: #28113d; 
+}
+
+p {
+    font-size: 12px;
+}
+
+.fs-10 {
+    font-size: 10px;
+}
+
+.fs-14 {
+    font-size: 14px !important;
+}
+.content-main {
+    background: white;
+    min-height: 740px;
+    border-radius: 60px 60px 0 0;
+    padding-top: 50px;
+    padding-bottom: 65px;
+}
+
+section.banner a, section.banner p, section.banner div, section.banner h6 {
+    color: white;
+}
+
+/* ------------------------Css Footer -------------------------*/
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+    background-color: #28113d;
+    box-shadow: 0px 8px 5px 10px #ffffff99;
+}
+.fix-menu>div{
+    width: 25%;
+}
+footer a  {
+    position: relative;
+    display: block;
+    font-size: 30px;
+    padding: 3px 0px;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+footer a:hover {
+    color: white;
+}
+
+footer .col-3.text-center {
+    position: relative;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+footer a:after {
+    content: "";
+    background: rgb(255, 203, 203);
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-top: 25%;
+    /* padding-left: 350%; */
+    /* margin-top: -50%; */
+    opacity: 0;
+    transition: all 0.8s;
+    width: 100%;
+
+}
+  
+footer a:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+/* button primary */
+.btn.btn-tim {
+    padding: 8px 3px;
+    background: white;
+    color: purple;
+    font-size: 11px;
+    border: 1px solid purple;
+    width: 100%;
+}
+
+.btn.btn-tim.active {
+    color: white;
+    background: purple;
+}
+
+.btn.btn-full-tim {
+    padding: 8px 3px;
+    background: purple;
+    color: white;
+    font-size: 16px;
+    border: 1px solid purple;
+    width: 100%;
+}
+
+.text-purple {
+    color: purple;
+}
+
+table.table {
+    border-top: 2px solid #e6e9ec;
+    border-left: 2px solid #e6e9ec;
+    border-right: 2px solid #e6e9ec;
+}

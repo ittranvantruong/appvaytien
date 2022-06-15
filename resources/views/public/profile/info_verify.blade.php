@@ -7,11 +7,11 @@
 <main>
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">Xác minh tên thật</h3>
-        <h3 id="button_back"><a class="text-purple" href="{{ route('profile') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('profile.index') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
 
     <div class="container">
-        <a href="{{ route('info.persional') }}">
+        <a href="{{ route('profile.info.persional') }}">
             <div class="row">
                 <span>Thông tin cá nhân
                     <span class="text-muted float-end">
@@ -29,7 +29,7 @@
     </div>
 
     <div class="container">
-        <a href="{{ route('info') }}">
+        <a href="{{ route('profile.info') }}">
             <div class="row">
                 <span>Thông tin 
                     <span class="text-muted float-end">
@@ -48,7 +48,7 @@
     </div>
 
     <div class="container">
-        <a href="{{ route('bank') }}">
+        <a href="{{ route('profile.card.bank') }}">
             <div class="row">
                 <span>Thẻ ngân hàng
                     <span class="text-muted float-end">
@@ -68,7 +68,7 @@
     </div>
 
     <div class="container">
-        <a href="{{ route('phone') }}">
+        <a href="{{ route('profile.phone') }}">
             <div class="row">
                 <span>Điện thoại xác thực
                     <span class="text-muted float-end">

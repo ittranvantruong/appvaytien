@@ -10,14 +10,10 @@ use App\Models\User;
 
 class WalletController extends Controller
 {
-    public function getWallet() {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
+    public function index() {
+        $user = auth()->user()->load('wallet:user_id,amount', 'bank');
             
-        return view('public.wallet.index', compact(
-            'user'
-        ));
+        return view('public.wallet.index', compact('user'));
     }
 
 }

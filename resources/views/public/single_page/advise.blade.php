@@ -4,7 +4,7 @@
 @section('content')
 <main>
     <p class="p-2"></p>
-    <section class="container text-center"> id="content_phu">
+    <section class="container banner text-center">
         <h3 class="text-center text-white">Chăm sóc khách hàng</h3>
         <img src="{{ asset('public/images/dore.png') }}" style="position: absolute; left: 25%; top: 15%;" width="50%">
         <p style="padding: 125px"></p>

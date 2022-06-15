@@ -5,100 +5,38 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
 use App\Models\User;
-
+use  App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
-    public function getProfile() {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
-            
-        return view('public.profile.index', compact(
-            'user',
-        ));
+    public function changePassword() {
+        return view('public.user.changePassword');
     }
 
-    //================= Group page xác minh KYC =================
-    public function getXacminh() {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
-        return view('public.xacminh.xacminh', compact('user'));
-    }
+    public function updateChangePassword(UserRequest $request){
+        $user = auth()->user();
 
-    public function getInfo_canhan() {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
-        return view('public.xacminh.info_canhan', compact('user'));
-    }
-
-    public function postInfo_canhan(Request $request) {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
+        if(!Hash::check($request->password, $user->password)){
+            return back()->with('error', 'Mật khẩu cũ không chính xác');
+        }
         
-        $user->email = $request->email;
-        $user->save();
+        $user->update(['password' => Hash::make($user->new_password)]);
+        return back()->with('success', 'Thực hiện thành công');
+
+    }
+
+    public function postRegister(UserRequest $request) {
         
-        $user->info->fullname = $request->fullname;
-        $user->info->identity_number = $request->identity_number;
-        $user->info->save();
+        $data = $request->only('phone', 'password');
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
 
-        return redirect()->back();
+        $bank = $user->bank()->create();
+        $info = $user->info()->create();
+        $wallet = $user->wallet()->create();
+        $verify = $user->verify()->create();
+
+        return back()->with('success', 'Bạn đã đăng ký thành công!');
     }
-
-    public function getThongtin() {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
-
-        return view('public.xacminh.thongtin', compact('user'));
-    }
-
-    public function postThongtin(Request $request) {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
-
-        $user->info->education = $request->education;
-        $user->info->personal_income = $request->personal_income;
-        $user->info->purpose = $request->purpose;
-        $user->info->private_apartment = $request->private_apartment;
-        $user->info->private_car = $request->private_car;
-        $user->info->save();
-
-        return redirect()->back();
-    }
-
-    public function getBank() {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
-        return view('public.xacminh.bank', compact('user'));
-    }
-
-    public function postBank(Request $request) {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
-
-        $bank = $user->bank;
-        $bank->name_owner = $request->name_owner;
-        $bank->name = $request->name;
-        $bank->identity_number = $request->identity_number;
-        $bank->number = $request->number;
-        $bank->save();
-
-        return redirect()->back();
-    }
-
-    public function getPhone() {
-        $user = User::where('id', auth()->user()->id)
-            ->with('wallet', 'bank', 'info', 'verify', 'loan_amount')
-            ->first();
-        return view('public.xacminh.phone', compact('user'));
-    }
+    
 }

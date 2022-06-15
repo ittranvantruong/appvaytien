@@ -5,6 +5,7 @@ namespace App\Admin\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserLoanAmount;
+use \DB;
 
 class UserLoanAmountController extends Controller
 {
@@ -37,7 +38,7 @@ class UserLoanAmountController extends Controller
         $data['status'] = 1;
 
         $user_loan_amount->user->wallet()->update([
-            'amount' => $data['loan_limit'],
+            'amount' => DB::raw('amount + '.$data['loan_limit']),
         ]);
         $user_loan_amount->update($data);
         return back()->with('success', 'Thực hiện thành công');

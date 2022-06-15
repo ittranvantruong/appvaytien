@@ -7,10 +7,10 @@
 <main>
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">Cài đặt</h3>
-        <h3 id="button_back"><a class="text-purple" href="{{ route('profile') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('profile.index') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     <div class="container">
-        <a href="{{ route('change.password') }}">
+        <a href="{{ route('user.change.password') }}">
             <div class="row">
                 <span>Thay đổi mật khẩu đăng nhập 
                     <span class="text-muted float-end">
@@ -21,7 +21,7 @@
     </div>
     
     <div class="container">
-        <a href="{{ route('aboutus') }}">
+        <a href="{{ route('single.page.aboutus') }}">
             <div class="row">
                 <span>Về chúng tôi<span class="text-muted float-end">
                     <i class="fa fa-chevron-right"></i></span></span>

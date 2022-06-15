@@ -1,0 +1,36 @@
+
+
+.content-main button#nav-home-tab, 
+.content-main button#nav-profile-tab, 
+.content-main div#nav-tab {
+    border: none;
+    color: black;
+}
+
+.content-main button.active {
+    background: purple !important;
+    color: white !important;
+    border-radius: 5px !important;
+}
+
+.content-main span#inputGroup-sizing-default {
+    height: 50px;
+    background: white;
+    border-right: none;
+    color: gray;
+}
+
+.content-main input.form-control {
+    border-left: none;
+}
+
+.content-main input.form-control:focus {
+    box-shadow: none;
+    border-color: #d3d3d3;
+}
+img.icon{
+    position: absolute;
+    z-index: 1;
+    width: 30%;
+    top: 8%;
+}

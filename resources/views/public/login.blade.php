@@ -12,50 +12,45 @@
     <script src="{{ asset('public/lib/jquery-toast-plugin/jquery.toast.min.js') }}"></script>
     <script src="{{ asset('public/lib/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{ asset('public/css/home.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('public/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('public/css/login.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
 <main>
-    <p class="p-2"></p>
-    <section class="container" id="content_phu">
+    <section class="container banner pt-2 pb-4">
         <div class="row">
             <div class="col-8">
                 <h3><strong>Hạn mức tối đa 1 khoản vay là 1 tỉ</strong></h3>
                 <p class="m-0">Chỉ 10' có tiền. Lãi suất thấp chỉ từ 0.5%/ tháng. Vay không cần thế chấp chỉ cần chứng minh thư.</p>
             </div>
             <div class="col-4">
-                <img class="pt-2" src="{{ asset('public/images/dore.png') }}" style="position: absolute; z-index: 1; width: 30%;top: 8%;">
+                <img class="pt-2 icon" src="{{ asset('public/images/dore.png') }}">
             </div>
         </div>
     </section>
-    <p class="p-1"></p>
-
-    <section class="position-relative" id="login_form">
+    <section class="position-relative content-main">
         <div class="container">
-            <nav>
+            <nav class="pb-3">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link {{ isset($tab) ? '' : 'active' }}" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="width: 50%;">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="width: 50%;">
                         Đăng nhập
                     </button>
-                    <button class="nav-link {{ isset($tab) ? 'active' : '' }}" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="width: 50%;">
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="width: 50%;">
                         Đăng ký
                     </button> 
                 </div>
             </nav> 
-            <p></p>
             <div class="tab-content" id="nav-tabContent">
                 <!-- Tab đăng nhập ở đây -->
-                <div class="tab-pane fade show {{ isset($tab) ? '' : 'active' }}" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
                     <form method="POST" action="{{ route('post.login') }}">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-default">
                                 <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
                             </span>
-                            <input type="number" name="phone" class="form-control" required
+                            <input type="text" name="phone" class="form-control" required
                                 placeholder="Vui lòng nhập số điện thoại của bạn">
                         </div>
-                        <p></p>
-
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-default">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -70,7 +65,7 @@
                 </div>
 
                 <!-- Tab đăng ký ở đây -->
-                <div class="tab-pane fade {{ isset($tab) ? $tab : '' }}" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                     <form method="POST" action="{{ route('post.register') }}">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-default">
@@ -78,7 +73,6 @@
                             </span>
                             <input type="text" class="form-control" name="phone" required placeholder="Vui lòng nhập số điện thoại của bạn">
                         </div>
-                        <p></p>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="inputGroup-sizing-default">

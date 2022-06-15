@@ -8,10 +8,12 @@
     <header class="position-relative p-0">
         <h3 class="text-center text-uppercase text-purple p-3">
             Thông tin</h3>
-        <h3 id="button_back"><a class="text-purple" href="{{ route('verify') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
+        <h3 id="button_back"><a class="text-purple" href="{{ route('profile.verify') }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></h3>
     </header>
     
-    <form action="{{ route('post.info') }}" method="POST">
+    <form action="{{ route('profile.update.info') }}" method="POST">
+        @method('PUT')
+        @csrf
         <div class="container">
             <a href="#">Học vấn</a>
             <span class="float-end">
@@ -89,7 +91,7 @@
         <div class="m-2">
             <button class="btn btn-full-tim">Xác nhận thông tin</button>
         </div>
-    @csrf
+    
     </form>
 </main>
 @endsection
