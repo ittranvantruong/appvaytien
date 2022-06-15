@@ -18,7 +18,6 @@ Route::get('/', function(){
 });
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('index');
-
     Route::group(['prefix' => 'quan-ly-khoan-vay', 'as' => 'loan.amount.'], function () {
         Route::get('/', [LoanAmountController::class, 'index'])->name('index');
         Route::get('edit{loan_amount:id}', [LoanAmountController::class, 'edit'])->name('edit');

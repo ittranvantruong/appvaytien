@@ -32,11 +32,11 @@ class SettingSeeder extends Seeder
             'key' => 'site_zalo',
             'plain_value' => '0379266997'
         ]);
-        DB::table('settings')->insert([
-            'key' => 'site_facebook',
-            'plain_value' => '0379266997',
-            'type_input' => 1
-        ]);
+        // DB::table('settings')->insert([
+        //     'key' => 'site_facebook',
+        //     'plain_value' => '0379266997',
+        //     'type_input' => 1
+        // ]);
         DB::table('settings')->insert([
             'key' => 'site_introduce',
             'plain_value' => '',
