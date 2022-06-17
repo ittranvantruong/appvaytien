@@ -11,6 +11,7 @@ use App\Http\Controllers\SinglePageController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/test-pdf', [AuthController::class, 'testPDF']);
 Route::post('/login', [AuthController::class, 'postLogin'])->name('post.login');
 
 Route::post('/register', [UserController::class, 'postRegister'])->name('post.register');
