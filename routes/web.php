@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\WithdrawnController;
 use App\Http\Controllers\SinglePageController;
 use App\Http\Controllers\UserLoanAmountController;
@@ -19,6 +20,9 @@ Route::post('/register', [UserController::class, 'postRegister'])->name('post.re
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('index');
+
+    Route::get('hop-dong-mau/{user:id}', [ContractController::class, 'showExample'])->name('contract.showExample');
+    Route::get('hop-dong/{userLoanAmount:id}', [ContractController::class, 'show'])->name('contract.show');
 
     Route::get('/rut-tien', [WithdrawnController::class, 'index'])->name('withdrawn.index');
     Route::get('/rut-tien/lich-su', [WithdrawnController::class, 'show'])->name('withdrawn.history');

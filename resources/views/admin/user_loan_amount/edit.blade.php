@@ -116,8 +116,10 @@
                             @else
                                 <div class="col-12 mt-3">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <h3>Sửa khoản vay</h3>
+                                        <div class="card-header d-flex justify-content-between">
+                                            <h3>Sửa khoản vay</h3> 
+                                            <a target="_blank" class="btn btn-primary" href="{{route('admin.user.loan.amount.exportPdf', $user_loan_amount->id)}}">Xem hợp đồng</a>
+
                                         </div>
                                         <div class="card-body">
                                             <form id="formUpdate"
@@ -145,6 +147,7 @@
                                     </div>
                                 </div>
                             @endif
+                           
                             <div class="col-12 text-center mt-3">
                                 <button type="button" class="btn btn-danger submit-form"
                                     data-target="#formDelete">Xóa</button>

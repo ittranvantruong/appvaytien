@@ -45,6 +45,7 @@ Route::group(['middleware' => ['admin']], function () {
         // Route::post('store', [UserController::class, 'store'])->name('store');
         Route::put('update/{user_loan_amount:id}', [UserLoanAmountController::class, 'update'])->name('update');
         Route::put('update-loan-limit/{user_loan_amount:id}', [UserLoanAmountController::class, 'updateLoanLimit'])->name('updateLoanLimit');
+        Route::get('xuat-hop-dong/{user_loan_amount:id}', [UserLoanAmountController::class, 'exportContract'])->name('exportPdf');
 
         // Route::put('verify/{user:id}', [UserController::class, 'verify'])->name('verify');
         Route::delete('delete/{user_loan_amount:id}', [UserLoanAmountController::class, 'delete'])->name('delete');

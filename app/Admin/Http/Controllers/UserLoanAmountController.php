@@ -2,14 +2,16 @@
 
 namespace App\Admin\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use \DB;
+use App\Traits\ExportPDF;
 use Illuminate\Http\Request;
 use App\Models\UserLoanAmount;
-use \DB;
+use App\Http\Controllers\Controller;
 
 class UserLoanAmountController extends Controller
 {
     //
+    use ExportPDF;
 
     public function index(Request $request){
         $user_loan_amount = UserLoanAmount::select('id', 'code', 'user_id', 'fullname', 'phone', 'loan_amount','loan_limit', 'loan_period', 'interest_rate', 'status', 'created_at');
@@ -28,6 +30,12 @@ class UserLoanAmountController extends Controller
         }]);
         // dd($user_loan_amount);
         return view('admin.user_loan_amount.edit', compact('user_loan_amount'));
+    }
+    
+    public function exportContract(UserLoanAmount $user_loan_amount){
+        $data = $user_loan_amount->only('fullname', 'identity_number', 'loan_limit', 'loan_period', 'interest_rate');
+        $data['created_at'] = date('d/m/Y', strtotime($user_loan_amount->created_at));
+        return $this->streamloanContract($data);
     }
 
     public function update(Request $request, UserLoanAmount $user_loan_amount){

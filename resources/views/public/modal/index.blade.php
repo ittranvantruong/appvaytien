@@ -27,7 +27,7 @@
                             nhấn nút xác nhận để đăng ký vay, hợp đồng này sẽ có hiệu lực. Nếu vi phạm hợp
                             đồng vì lý do cá nhân, tôi sẵn sàng chịu mọi trách nhiệm pháp lý.
                         </p>
-                        <a class="btn btn-tim">Xem hợp đồng vay</a>
+                        <a class="btn btn-tim" href="{{route('contract.showExample', $user->id)}}">Xem hợp đồng vay</a>
                         <p></p>
                         <button type="submit" class="btn btn-full-tim">Xác nhận khoản vay</button>
                     </div>

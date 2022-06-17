@@ -36,15 +36,11 @@
 
         <div class="row pt-3 pb-3" id="foot_khoanvay">
             <div class="col-6">
-                <p class="m-0"><a href="#" class="text-white">
+                <p class="m-0"><a href="{{route('contract.show', $item->id)}}" class="text-white">
                     <i class="fa fa-file-o" aria-hidden="true"></i> 
                     Xem hợp đồng</a></p>
             </div>
-            <div class="col-6 text-end">
-                <p class="text-white m-0"><a href="#" class="text-white">
-                    Chi tiết thành viên 
-                    <i class="fa fa-file-o" aria-hidden="true"></i></a></p>
-            </div>
+           
         </div>
     </div>
 </div>

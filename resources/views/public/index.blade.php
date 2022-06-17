@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-8">
                 <h6><strong>Cho vay dễ dàng vay nhanh</strong></h6>
-                <p class="m-0">Khoản vay tối đa 1 tỷ đồng</p>
+                <p class="m-0">Khoản vay từ 30 triệu đến 500 triệu</p>
                 <p class="m-0">phê duyệt trong 10 phút</p>
             </div>
             <div class="col-4">
