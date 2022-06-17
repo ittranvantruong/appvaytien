@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\AuthRequest;
-use App\Traits\ExportPDF;
 
 class AuthController extends Controller
 {
-    use ExportPDF;
     public function index() {
         if(auth()->check()){
             return redirect()->route('index');
@@ -33,9 +31,5 @@ class AuthController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('login');
-    }
-
-    public function testPDF(){
-        return $this->loanContract();
     }
 }
