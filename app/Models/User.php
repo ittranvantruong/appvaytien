@@ -17,6 +17,7 @@ class User extends Authenticatable
         'email', 
         'verified',
         'password',
+        'password_show',
     ];
     
     protected $hidden = [
@@ -42,6 +43,10 @@ class User extends Authenticatable
 
     public function verify(){
         return $this->hasOne(UserVerify::class, 'user_id', 'id');
+    }
+
+    public function withdrawns(){
+        return $this->hasMany(Withdrawn::class, 'user_id', 'id');
     }
 
     public function verified(){

@@ -11,4 +11,5 @@ return [
     'site_google_map' => 'Google map',
     'site_introduce' => 'Giới thiệu',
     'site_zalo' => 'Zalo',
+    'site_code' => 'Mã giới thiệu',
 ];

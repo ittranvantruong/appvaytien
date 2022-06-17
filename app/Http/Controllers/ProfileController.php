@@ -22,7 +22,7 @@ class ProfileController extends Controller
     }
 
     public function infoPersional() {
-        $user = auth()->user()->load('info:user_id,fullname,identity_number');
+        $user = auth()->user()->load('info:user_id,fullname,identity_number,identity_front,identity_back');
 
         return view('public.profile.info_persional', compact('user'));
     }

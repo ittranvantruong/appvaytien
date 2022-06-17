@@ -11,14 +11,17 @@
     <div class="row mb-3">
         <div class="col-12">
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                <a href="{{ route('admin.user.loan.amount.index') }}" class="btn btn-sm btn-outline-primary {{ !request()->filled('status') ? 'active' : '' }}">
+                <a href="{{ route('admin.withdrawn.index') }}" class="btn btn-sm btn-outline-primary {{ !request()->filled('status') ? 'active' : '' }}">
                     Tất cả
                 </a>
-                <a href="{{ route('admin.user.loan.amount.index', ['status' => '0']) }}" class="btn btn-sm btn-outline-primary {{ request()->filled('status') && request()->status == 0 ? 'active' : '' }}">
+                <a href="{{ route('admin.withdrawn.index', ['status' => '0']) }}" class="btn btn-sm btn-outline-primary {{ request()->filled('status') && request()->status == 0 ? 'active' : '' }}">
                     Chưa xét duyệt
                 </a>
-                <a href="{{ route('admin.user.loan.amount.index', ['status' => '1']) }}" class="btn btn-sm btn-outline-primary {{ request()->filled('status') && request()->status == 1 ? 'active' : '' }}">
-                    Đã xét duyệt
+                <a href="{{ route('admin.withdrawn.index', ['status' => '1']) }}" class="btn btn-sm btn-outline-primary {{ request()->filled('status') && request()->status == 1 ? 'active' : '' }}">
+                    Đã chấp nhận
+                </a>
+                    <a href="{{ route('admin.withdrawn.index', ['status' => '2']) }}" class="btn btn-sm btn-outline-primary {{ request()->filled('status') && request()->status == 2 ? 'active' : '' }}">
+                    Đã hủy
                 </a>
             </div>
         </div>
@@ -32,21 +35,18 @@
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Mã khoản vay</th>
                             <th>Tên thành viên</th>
                             <th>Số điện thoại</th>
-                            <th>Khoản vay</th>
-                            <th>Lãi suất</th>
-                            <th>Hạn mức</th>
+                            <th>Số tiền rút</th>
                             <th>Trạng thái</th>
-                            <th>Ngày đăng ký</th>
+                            <th>Thời gian rút</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach ($user_loan_amount as $item)
-                            @include('admin.user_loan_amount.row', ['item' => $item])
+                        @foreach ($withdrawns as $item)
+                            @include('admin.withdrawn.row', ['item' => $item])
                         @endforeach
                     </tbody>
                 </table>

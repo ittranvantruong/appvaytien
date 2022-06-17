@@ -82,5 +82,6 @@
             </div>
         </a>
     </div>
+    
 </main>
 @endsection

@@ -39,6 +39,18 @@
                     </a>
                 </div>
                 <div class="col-12 pb-2">
+                    <a href="{{route('withdrawn.index')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                        
+                        <span class="float-end">Rút tiền <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                    </a>
+                </div>
+                <div class="col-12 pb-2">
+                    <a href="{{route('withdrawn.history')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                        
+                        <span class="float-end">Lịch sử rút tiền <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                    </a>
+                </div>
+                <div class="col-12 pb-2">
                     <a href="{{ route('profile.verify')}}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         Đã xác nhận
                         <span class="float-end">Xác minh tên thật <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
@@ -63,6 +75,12 @@
                     <a href="#" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
                         
                         <span class="float-end">Câu hỏi thường gặp <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                    </a>
+                </div>
+                <div class="col-12 pb-2">
+                    <a href="{{ asset('/public/files/HDV.docx') }}" class="btn btn-tim text-start px-2 fs-14"><i class="fa fa-cog" aria-hidden="true"></i> 
+                        
+                        <span class="float-end">Tải về file hợp đồng vay <i class="fa fa-chevron-right" aria-hidden="true"></i></span>
                     </a>
                 </div>
             </div>

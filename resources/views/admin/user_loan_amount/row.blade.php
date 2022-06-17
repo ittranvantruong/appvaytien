@@ -4,6 +4,7 @@
     <td>{{$item->phone}}</td>
     <td>{{$item->loan_amount}} - {{$item->loan_period}}</td>
     <td>{{$item->interest_rate}} %</td>
+    <td>{{!$item->loan_limit ? 'chưa cấp' : number_format($item->loan_limit)}}</td>
     <td>{!! $item->status ? '<span class="text-success">Đã xét duyệt</span>' : 'Chưa xét duyệt' !!}</td>
     <td>{{date('d/m/Y', strtotime($item->created_at))}}</td>
     <td>

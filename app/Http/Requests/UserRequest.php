@@ -38,6 +38,10 @@ class UserRequest extends FormRequest
             return [
                 'phone' => ['required', 'regex:/((09|03|07|08|05)+([0-9]{8})\b)/', 'unique:App\Models\User,phone'],
                 'password' => 'required',
+                'identity_number' => ['required', 'unique:App\Models\UserInfo,identity_number'],
+                'identity_front' => ['required'],
+                'identity_back' => ['required'],
+                'code' => ['required'],
             ];
             }else{
                 return [];
@@ -50,6 +54,10 @@ class UserRequest extends FormRequest
         return [
             'phone' => 'Số điện thoại',
             'password' => 'Mật khẩu',
+            'identity_number'  => 'Số CMND/CCCD',
+            'identity_front' => 'Mặt trước CMND/CCCD',
+            'identity_back' => 'Mặt sau CMND/CCCD',
+            'code' => 'Mã giới thiệu',
         ];
     }
     public function messages(){
@@ -61,6 +69,13 @@ class UserRequest extends FormRequest
             'new_password_confirmation.unique' => 'Nhập lại mật khẩu không được bỏ trống',
             'phone.regex' => ':attribute không hợp lệ',
             'phone.unique' => ':attribute đã có người sử dụng',
+            'identity_number.required' => 'Số CMND/CCCD không được bỏ trống',
+            'identity_number.unique' => 'Số CMND/CCCD đã được sử dụng',
+            'identity_front.required' => 'Mặt trước CMND/CCCD không được bỏ trống',
+            'identity_back.required' => 'Mặt sau CMND/CCCD không được bỏ trống',
+            'code.required' => 'Mã giới thiệu không được bỏ trống',
+            
+
         ];
     }
 }

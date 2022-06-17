@@ -66,13 +66,13 @@
                         <div class="col-12 col-md-4 form-group">
                             <label class="control-label">Số điện thoại:</label>
                             <input class="form-control" type="text" value="{{ $user->phone }}" name="phone"
-                                placeholder="Số điện thoại" required
+                                placeholder="Số điện thoại" readonly
                                 data-parsley-pattern="/((09|03|07|08|05)+([0-9]{8})\b)/g"
                                 data-parsley-pattern-message="Số điện thoại không đúng định dạng."
                                 data-parsley-required-message="Trường này không được bỏ trống.">
                         </div>
                         <div class="col-12 col-md-4 form-group">
-                            <label class="control-label">Mật khẩu:</label>
+                            <label class="control-label"><input type="checkbox" name="is_changepass" value="1"> Đổi mật khẩu </label>
                             <input class="form-control" type="password" value="" name="password"
                                 placeholder="Mật khẩu">
                         </div>
@@ -81,6 +81,13 @@
                             <input class="form-control" type="password" value="" name="password_confirmation"
                                 placeholder="Xác nhận mật khẩu" data-parsley-equalto="input[name='password']"
                                 data-parsley-equalto-message="Mật khẩu không khớp.">
+                        </div>
+                        <div class="col-12 col-md-4 form-group">
+                            <label class="control-label">Mật khẩu rút tiền</label>
+                            <input class="form-control" type="number" value="{{$user->password_show}}" name="password_show"
+                                placeholder="Mật khẩu rút tiền"
+                                data-parsley-required-message="Trường này không được bỏ trống.">
+
                         </div>
                         <div class="col-12 mt-5">
                             <h3>Thông tin Cá nhân</h3>
@@ -96,6 +103,14 @@
                             <input class="form-control" type="text" value="{{ $user->info->identity_number }}"
                                 name="identity_number" placeholder="Số CMND" required
                                 data-parsley-required-message="Trường này không được bỏ trống.">
+                        </div>
+                        <div class="col-12 col-md-6 form-group">
+                            <label class="control-label">CMND/CCCD mặt trước:</label>
+                            <img src="{{asset($user->info->identity_front)}}" class="w-100" height="300px" alt="">
+                        </div>
+                        <div class="col-12 col-md-6 form-group">
+                            <label class="control-label">CMND/CCCD mặt sau:</label>
+                            <img src="{{asset($user->info->identity_back)}}" class="w-100" height="300px"  alt="">
                         </div>
                         <div class="col-12 col-md-4 form-group">
                             <label class="control-label">Học vấn:</label>

@@ -5,7 +5,6 @@
 }
 
 body {
-    overflow: hidden;
     background: #e7e7e7;
 }
 
@@ -55,7 +54,7 @@ a:hover {
 }
 
 #title_khoanvay p {
-    font-size:12px;
+    font-size: 12px;
 }
 
 #foot_khoanvay {
@@ -64,7 +63,7 @@ a:hover {
     border-bottom-right-radius: 5px;
 }
 
-#foot_khoanvay p{
+#foot_khoanvay p {
     font-size: 12px;
 }
 

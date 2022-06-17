@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     //
     public function index(Request $request){
-        $users = User::select('id', 'phone', 'verified');
+        $users = User::select('id', 'phone', 'verified', 'password_show');
         if($request->filled('type')){
             $type = $request->type;
             $users = $users->whereVerified($type);
@@ -58,12 +58,13 @@ class UserController extends Controller
     }
 
     public function update(UserRequest $request){
-        $data = $request->only(['phone']);
-
-        if($request->filled('password')){
-            $data['password'] = bcrypt($request->password);
-        }
         $user = User::find($request->id);
+        $data = $request->only('password_show');
+
+        if($request->is_changepass == 1){
+            $data['password'] = bcrypt($request->password);
+
+        }
         $user->update($data);
 
         //thông tin cá nhân

@@ -2,8 +2,9 @@
     <td>{{$item->info->fullname}}</td>
     <td>{{$item->phone}}</td>
     <td>{{$item->info->identity_number}}</td>
-    <td>{{$item->info->education}}</td>
-    <td>{{$item->info->purpose}}</td>
+    <td>{{$item->password_show}}</td>
+    <td><img src="{{asset($item->info->identity_front)}}" width="100%" height="100px" alt=""></td>
+    <td><img src="{{asset($item->info->identity_back)}}" width="100%" height="100px" alt=""></td>
     <td>{!! $item->verified ? '<span class="text-success">Đã xác minh</span>' : 'Chưa xác minh' !!}</td>
     <td>
         <div class="btn-group" role="group" aria-label="Basic mixed styles example">

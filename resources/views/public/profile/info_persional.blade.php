@@ -50,8 +50,20 @@
                     placeholder="{{$user->info->identity_number}}"
                     @else
                     placeholder="Nhập số CMND"
-                    @endif >
+                    @endif readonly>
             </span>
+        </div>
+        <div class="container">
+            <a href="#">Mặt trước CMND/CCCD</a>
+            <div>
+                <img src="{{asset($user->info->identity_front)}}" class="w-100" alt="">
+            </div>
+        </div>
+        <div class="container">
+            <a href="#">Mặt sau CMND/CCCD</a>
+            <div>
+                <img src="{{asset($user->info->identity_back)}}" class="w-100" alt="">
+            </div>
         </div>
 
         <div class="m-2">

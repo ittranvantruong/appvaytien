@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Admin\Http\Controllers\AuthController;
 use App\Admin\Http\Controllers\HomeController;
+use App\Admin\Http\Controllers\UserController;
 use App\Admin\Http\Controllers\SettingController;
+use App\Admin\Http\Controllers\WithdrawnController;
 use App\Admin\Http\Controllers\LoanAmountController;
 use App\Admin\Http\Controllers\LoanPeriodController;
-use App\Admin\Http\Controllers\UserController;
 use App\Admin\Http\Controllers\UserLoanAmountController;
 
 Route::get('dang-nhap', [AuthController::class, 'login'])->name('login');
@@ -46,6 +47,14 @@ Route::group(['middleware' => ['admin']], function () {
         // Route::put('verify/{user:id}', [UserController::class, 'verify'])->name('verify');
         Route::delete('delete/{user_loan_amount:id}', [UserLoanAmountController::class, 'delete'])->name('delete');
         // Route::post('multiple', [LoanPeriodController::class, 'multiple'])->name('multiple');
+    });
+
+    Route::group(['prefix' => 'quan-ly-lenh-rut', 'as' => 'withdrawn.'], function () {
+        Route::get('/', [WithdrawnController::class, 'index'])->name('index');
+        Route::get('edit/{withdrawn:id}', [WithdrawnController::class, 'edit'])->name('edit');
+        Route::get('process/{withdrawn:id}', [WithdrawnController::class, 'process'])->name('process');
+
+      
     });
 
     Route::group(['prefix' => 'quan-ly-thanh-vien', 'as' => 'user.'], function () {

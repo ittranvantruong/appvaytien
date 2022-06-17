@@ -30,3 +30,17 @@ if (!function_exists('statusUserLoanAmount')) {
         }
     }
 }
+
+if (!function_exists('formatStatusWithdrawn')) {
+    function formatStatusWithdrawn($status){
+        if($status == 0){
+            return '<span class="text-secondary">Chưa xét duyệt</span';
+        }elseif($status == 1){
+            return '<span class="text-success">Đã chấp nhận</span';
+        }elseif($status == 2){
+            return '<span class="text-danger">Đã hủy</span';
+        }else{
+            return '';
+        }
+    }
+}

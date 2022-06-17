@@ -12,7 +12,7 @@ class UserLoanAmountController extends Controller
     //
 
     public function index(Request $request){
-        $user_loan_amount = UserLoanAmount::select('id', 'code', 'user_id', 'fullname', 'phone', 'loan_amount', 'loan_period', 'interest_rate', 'status', 'created_at');
+        $user_loan_amount = UserLoanAmount::select('id', 'code', 'user_id', 'fullname', 'phone', 'loan_amount','loan_limit', 'loan_period', 'interest_rate', 'status', 'created_at');
         if($request->filled('status')){
             $status = $request->status;
             $user_loan_amount = $user_loan_amount->whereStatus($status);

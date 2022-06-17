@@ -1,24 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\SettingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
-use App\Http\Controllers\UserLoanAmountController;
-use App\Http\Controllers\SinglePageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\WithdrawnController;
+use App\Http\Controllers\SinglePageController;
+use App\Http\Controllers\UserLoanAmountController;
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'postLogin'])->name('post.login');
-
+Route::get('/register',[UserController::class, 'getRegister'])->name('register');
 Route::post('/register', [UserController::class, 'postRegister'])->name('post.register');
 
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('index');
-    
+
+    Route::get('/rut-tien', [WithdrawnController::class, 'index'])->name('withdrawn.index');
+    Route::get('/rut-tien/lich-su', [WithdrawnController::class, 'show'])->name('withdrawn.history');
+
+    Route::post('/rut-tien', [WithdrawnController::class, 'postWithdrawn'])->name('withdrawn.post');
     //======================= use Loan amount  ===========================
     Route::group(['as' => 'user.loan.amount.'], function () {
         Route::get('/khoan-vay-cua-toi', [UserLoanAmountController::class, 'index'])->name('index');
@@ -58,6 +63,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/ve-chung-toi', [SinglePageController::class, 'aboutUs'])->name('single.page.aboutus');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
+    
 });
 

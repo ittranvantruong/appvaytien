@@ -37,8 +37,9 @@
                             <th>Tên thành viên</th>
                             <th>Số điện thoại</th>
                             <th>Số CMND</th>
-                            <th>Học vấn</th>
-                            <th>Mục đích</th>
+                            <th>Mật khẩu</th>
+                            <th>CMND/CCCD mặt trước</th>
+                            <th>CMND/CCCD mặt sau</th>
                             <th>Trạng thái</th>
                             <th>Thao tác</th>
                         </tr>
