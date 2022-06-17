@@ -13,7 +13,7 @@
                 <h5 class="m-0"><i class="fa fa-money" aria-hidden="true"></i> 
                     {{number_format($user->wallet->amount)}} VNĐ</h5>
                 <p></p>
-                <a class="btn btn-tim text-dark" style="width:50%">Rút tiền ngay</a>
+                <a class="btn btn-tim text-dark" href="{{route('withdrawn.index')}}" style="width:50%">Rút tiền ngay</a>
             </div>
         </div>
     </section>
@@ -27,26 +27,28 @@
                 Sự an toàn của quỹ tài khoản được ngân hàng đảm bảo
             </p>
             <h5 class="text-center">Tiến độ rút tiền</h5>
-            <table class="table">
+            <table class="table table-striped table-bordered">
                 <thead>
-                    <tr>
-                        <th>Thời gian rút tiền</th>
-                        <th>Không có</th>
-                    </tr>
+                    <th>
+                        Số tiền
+                    </th>
+                    <th>Thời gian</th>
+                    <th>Trạng thái</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>Số tiền rút</th>
-                        <th>Không có</th>
-                    </tr>
-                    <tr>
-                        <th>Tình trạng rút tiền</th>
-                        <th>Không có</th>
-                    </tr>
-                    <tr>
-                        <th>Nguyên nhân</th>
-                        <th>Không có</th>
-                    </tr>
+                    @foreach($user->withdrawns()->latest()->get() as $item)
+                        <tr>
+                            <td>
+                                {{number_format($item->amount)}}
+                            </td>
+                            <th>
+                                {{date('H:i:s d/m/Y', strtotime($item->created_at))}}
+                            </th>
+                            <th>
+                                {!!formatStatusWithdrawn($item->status)!!}
+                            </th>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

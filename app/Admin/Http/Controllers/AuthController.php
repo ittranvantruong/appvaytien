@@ -2,9 +2,10 @@
 
 namespace App\Admin\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Admin\Http\Requests\AuthRequest;
 
 class AuthController extends Controller
@@ -31,6 +32,18 @@ class AuthController extends Controller
         }
         
         return back()->with('error', 'Tên đăng nhập hoặc mật khẩu không đúng');
+    }
+
+    public function changePassword(Request $request){
+        $admin = auth()->guard('admin')->user();
+        if (Hash::check($request->old_password, $admin->password)) {
+            $admin->password = Hash::make($request->password);
+            return back()->with('success', 'Đổi mật khẩu thành công');
+        }else{
+            return back()->with('error', 'Mật khẩu cũ không đúng');
+        }
+        
+        
     }
 
     public function logout(Request $request){

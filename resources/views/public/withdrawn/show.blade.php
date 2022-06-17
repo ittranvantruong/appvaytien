@@ -30,13 +30,7 @@
                                 {{date('H:i:s d/m/Y', strtotime($item->created_at))}}
                             </th>
                             <th>
-                                @if ($item->stastus == 0 )
-                                    Chưa duyệt
-                                @elseif($item->stastus == 1)
-                                    Thành công
-                                @else
-                                    Đã hủy
-                                @endif
+                                {!!formatStatusWithdrawn($item->status)!!}
                             </th>
                         </tr>
                     @endforeach

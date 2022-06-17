@@ -18,7 +18,7 @@ class WithdrawnController extends Controller
     public function postWithdrawn(Request $request){
         $user = auth()->user()
         ->load('wallet:user_id,amount','info:user_id,fullname');
-        if($request->amount > $user->wallet->amount || $request->amount < 0){
+        if($request->amount > $user->wallet->amount || $request->amount <= 0){
             return back()->with('error', 'Nhập số tiền rút phải lớn hơn 0, bé hơn số dư hiện tại');
         }
         if($user->password_show == $request->password_show) {

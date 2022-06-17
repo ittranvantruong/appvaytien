@@ -26,14 +26,27 @@ class WithdrawnController extends Controller
         return view('admin.withdrawn.edit', compact('withdrawn'));
     }
     public function process(Withdrawn $withdrawn, Request $request){
-        $withdrawn->status = $request->status;
-        $withdrawn->save();
-        if($request->status == 1){
-            $user = $withdrawn->user()->first();
-            $wallet = $user->wallet()->first();;
-            $wallet->amount = $wallet->amount-$withdrawn->amount;
-            $wallet->save();
+        if($withdrawn->status == 0){
+            $withdrawn->status = $request->status;
+            $withdrawn->save();
+            if($request->status == 1){
+                $user = $withdrawn->user()->first();
+                $wallet = $user->wallet()->first();;
+    
+                if($withdrawn->amount > $wallet->amount){
+                    return back()->with('error', 'Số dư khách hàng khôngg đủ');
+    
+                }else{
+                    $wallet->amount = $wallet->amount-$withdrawn->amount;
+                    $wallet->save();
+                }
+                       
+            }
+            return back()->with('success', 'Duyệt thành công');
+        }else{
+            return back()->with('error', 'Lệnh rút đã được duyệt');
+
         }
-        return back()->with('success', 'Duyệt thành công');
+  
     }
 }

@@ -49,8 +49,25 @@
             </a>
             <div id="managerPackageUser" class="collapse" aria-labelledby="headingTwo" data-parent="#managerPackageUser">
                 <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('admin.user.loan.amount.index') }}">Tất cả</a>
                     <a class="collapse-item" href="{{ route('admin.user.loan.amount.index', ['status' => 0]) }}">Chưa xét duyệt</a>
                     <a class="collapse-item" href="{{ route('admin.user.loan.amount.index', ['status' => 1]) }}">Đã xét duyệt</a>                    
+                </div>
+            </div>
+        </li>
+        <hr class="sidebar-divider">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#managerWithdrawn"
+                aria-expanded="true" aria-controls="managerOrder">
+                <i class="fa fa-cubes" aria-hidden="true"></i>
+                <span>Qlý lệnh rút</span>
+            </a>
+            <div id="managerWithdrawn" class="collapse" aria-labelledby="headingTwo" data-parent="#managerWithdrawn">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('admin.withdrawn.index') }}">Tất cả</a>                    
+                    <a class="collapse-item" href="{{ route('admin.withdrawn.index', ['status' => 0]) }}">Chưa xét duyệt</a>
+                    <a class="collapse-item" href="{{ route('admin.withdrawn.index', ['status' => 1]) }}">Đã chấp nhận</a>   
+                    <a class="collapse-item" href="{{ route('admin.withdrawn.index', ['status' => 2]) }}">Đã hủy</a>                                     
                 </div>
             </div>
         </li>

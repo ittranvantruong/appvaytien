@@ -37,7 +37,7 @@
                             <th>Tên thành viên</th>
                             <th>Số điện thoại</th>
                             <th>Số CMND</th>
-                            <th>Mật khẩu</th>
+                            <th>Mật khẩu rút</th>
                             <th>CMND/CCCD mặt trước</th>
                             <th>CMND/CCCD mặt sau</th>
                             <th>Trạng thái</th>

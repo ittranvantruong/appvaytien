@@ -19,7 +19,7 @@ Route::get('/', function(){
 });
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('index');
-
+    Route::post('/changePassword', [AuthController::class, 'changePassword'])->name('auth.changePassword');
     Route::group(['prefix' => 'quan-ly-khoan-vay', 'as' => 'loan.amount.'], function () {
         Route::get('/', [LoanAmountController::class, 'index'])->name('index');
         Route::get('edit{loan_amount:id}', [LoanAmountController::class, 'edit'])->name('edit');
@@ -44,6 +44,8 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('edit/{user_loan_amount:id}', [UserLoanAmountController::class, 'edit'])->name('edit');
         // Route::post('store', [UserController::class, 'store'])->name('store');
         Route::put('update/{user_loan_amount:id}', [UserLoanAmountController::class, 'update'])->name('update');
+        Route::put('update-loan-limit/{user_loan_amount:id}', [UserLoanAmountController::class, 'updateLoanLimit'])->name('updateLoanLimit');
+
         // Route::put('verify/{user:id}', [UserController::class, 'verify'])->name('verify');
         Route::delete('delete/{user_loan_amount:id}', [UserLoanAmountController::class, 'delete'])->name('delete');
         // Route::post('multiple', [LoanPeriodController::class, 'multiple'])->name('multiple');

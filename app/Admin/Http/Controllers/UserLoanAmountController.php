@@ -44,15 +44,49 @@ class UserLoanAmountController extends Controller
         return back()->with('success', 'Thực hiện thành công');
     }
 
-    public function delete(Request $request, UserLoanAmount $user_loan_amount){
-        $user_loan_amount->delete();
-        if($request->ajax()){
-            return response()->json([
-                'status' => 200,
-                'message' => 'Thực hiện thành công'
-            ], 200);
+    public function updateLoanLimit(Request $request, UserLoanAmount $user_loan_amount){
+        $this->validate($request, [
+            'loan_limit' => ['required', 'numeric', 'min:0']
+        ]);
+        $data = $request->only(['loan_limit']);
+        $user = $user_loan_amount->user()->first();
+        $wallet = $user->wallet()->first();
+        $new_wallet_amount = $wallet->amount - $user_loan_amount->loan_limit + $request->loan_limit;
+        if($new_wallet_amount < 0){
+            return back()->with('error', 'Hạn mức phải lớn hơn '.number_format($user_loan_amount->loan_limit - $wallet->amount));
         }
-        return redirect()->route('admin.user.loan.amount.index')->with('success', 'Xóa thành công');
+        $wallet->amount = $new_wallet_amount;
+        $wallet->save();
+        $user_loan_amount->update($data);
+        return back()->with('success', 'Thực hiện thành công');
+    }
+
+    public function delete(Request $request, UserLoanAmount $user_loan_amount){
+        $user = $user_loan_amount->user()->first();
+        $wallet = $user->wallet()->first();
+        if($wallet->amount < $user_loan_amount->loan_limit){
+            if($request->ajax()){
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Không thể xoá do số dư ví đang bé hơn khoản vay'
+                ], 200);
+            }else{
+                return back()->with('error', 'Không thể xoá do số dư ví đang bé hơn khoản vay');
+            }
+        }else{
+            $user_loan_amount->delete();
+            $wallet->amount = $wallet->amount - $user_loan_amount->loan_limit;
+            $wallet->save();
+            if($request->ajax()){
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Thực hiện thành công'
+                ], 200);
+            }
+            return redirect()->route('admin.user.loan.amount.index')->with('success', 'Xóa thành công');
+        }
+
+       
     }
 
 }
