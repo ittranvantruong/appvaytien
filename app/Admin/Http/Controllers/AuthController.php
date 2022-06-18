@@ -38,6 +38,7 @@ class AuthController extends Controller
         $admin = auth()->guard('admin')->user();
         if (Hash::check($request->old_password, $admin->password)) {
             $admin->password = Hash::make($request->password);
+            $admin->save();
             return back()->with('success', 'Đổi mật khẩu thành công');
         }else{
             return back()->with('error', 'Mật khẩu cũ không đúng');

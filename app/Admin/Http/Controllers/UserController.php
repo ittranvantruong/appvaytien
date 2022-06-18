@@ -72,7 +72,7 @@ class UserController extends Controller
         $data_info['private_apartment'] = $request->filled('private_apartment') ? 1 : 0;
         $data_info['private_car'] = $request->filled('private_car') ? 1 : 0;
         $user->info()->update($data_info);
-
+        
         //thông tin tài khoản ngân Hàng
         $data_bank = $request->only(['name_owner', 'name', 'number']);
         $data_bank['identity_number'] = $request->identity_number_b;

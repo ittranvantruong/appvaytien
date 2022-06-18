@@ -37,7 +37,7 @@
                             <th>Số điện thoại</th>
                             <th>Khoản vay</th>
                             <th>Lãi suất</th>
-                            <th>Hạn mức</th>
+                            <th>Hạn mức cấp</th>
                             <th>Trạng thái</th>
                             <th>Ngày đăng ký</th>
                             <th>Thao tác</th>

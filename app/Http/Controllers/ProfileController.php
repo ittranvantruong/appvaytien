@@ -61,8 +61,11 @@ class ProfileController extends Controller
 
     public function updateCardBank(Request $request) {
         $user = auth()->user();
-        $data = $request->only('name_owner', 'identity_number', 'name', 'number');
-        $user->bank()->update($data);
+        if($user->verified == 0  ){
+            $data = $request->only('name_owner', 'identity_number', 'name', 'number');
+            $user->bank()->update($data);
+        }
+     
         return back()->with('success', 'Thực hiện thành công');
     }
 

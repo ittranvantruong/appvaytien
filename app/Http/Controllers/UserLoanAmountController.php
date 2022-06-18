@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserLoanAmount;
+use App\Http\Requests\UserLoanAmountRequest;
 
 class UserLoanAmountController extends Controller
 {
@@ -17,12 +18,17 @@ class UserLoanAmountController extends Controller
         return view('public.loan_amount.index', compact('user_loan_amount'));
     }
 
-    public function store(Request $request) {
+    public function store(UserLoanAmountRequest $request) {
         $user = auth()->user()
         ->load('info:user_id,fullname,identity_number');
 
         if ( $user->verified !=1 ) {
             return back()->with('error', 'Không đủ điểu kiện để đăng ký');
+        }
+        $check = $user->loan_amount()->whereStatus(0)->first();
+        if( $check != null){
+            return back()->with('error', 'Bạn có khoản vay chưa được duyệt');
+
         }
 
         $data = $request->only('loan_amount', 'loan_period', 'interest_rate');

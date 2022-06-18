@@ -48,6 +48,11 @@
                                 {!!formatStatusWithdrawn($item->status)!!}
                             </th>
                         </tr>
+                        @if($item->status == 2)
+                        <tr class="bg-dark text-light">
+                            <td colspan="3">Lý do: {{$item->note}}</td>
+                        </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

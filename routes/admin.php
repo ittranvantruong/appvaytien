@@ -55,7 +55,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::group(['prefix' => 'quan-ly-lenh-rut', 'as' => 'withdrawn.'], function () {
         Route::get('/', [WithdrawnController::class, 'index'])->name('index');
         Route::get('edit/{withdrawn:id}', [WithdrawnController::class, 'edit'])->name('edit');
-        Route::get('process/{withdrawn:id}', [WithdrawnController::class, 'process'])->name('process');
+        Route::post('process', [WithdrawnController::class, 'process'])->name('process');
 
       
     });

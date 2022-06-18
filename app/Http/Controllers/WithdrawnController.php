@@ -21,6 +21,10 @@ class WithdrawnController extends Controller
         if($request->amount > $user->wallet->amount || $request->amount <= 0){
             return back()->with('error', 'Nhập số tiền rút phải lớn hơn 0, bé hơn số dư hiện tại');
         }
+        $check_withdrawns = $user->withdrawns()->whereStatus(0)->count();
+        if( $check_withdrawns>0){
+            return back()->with('error', 'Bạn có lệnh rút chưa được duyệt');
+        }
         if($user->password_show == $request->password_show) {
             $data = $request->only('amount');
             $data['user_id'] = $user->id;

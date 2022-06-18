@@ -106,11 +106,11 @@
                         </div>
                         <div class="col-12 col-md-6 form-group">
                             <label class="control-label">CMND/CCCD mặt trước:</label>
-                            <img src="{{asset($user->info->identity_front)}}" class="w-100" height="300px" alt="">
+                            <img src="{{asset($user->info->identity_front)}}" class="w-100" alt="">
                         </div>
                         <div class="col-12 col-md-6 form-group">
                             <label class="control-label">CMND/CCCD mặt sau:</label>
-                            <img src="{{asset($user->info->identity_back)}}" class="w-100" height="300px"  alt="">
+                            <img src="{{asset($user->info->identity_back)}}" class="w-100"  alt="">
                         </div>
                         <div class="col-12 col-md-4 form-group">
                             <label class="control-label">Học vấn:</label>

@@ -16,6 +16,9 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'postLogin'])->name('post.login');
 Route::get('/register',[UserController::class, 'getRegister'])->name('register');
 Route::post('/register', [UserController::class, 'postRegister'])->name('post.register');
+Route::get('/camera', function (){
+    return view('camera');
+});
 
 Route::group(['middleware' => ['auth']], function () {
 

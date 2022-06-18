@@ -25,7 +25,8 @@ class WithdrawnController extends Controller
         }]);
         return view('admin.withdrawn.edit', compact('withdrawn'));
     }
-    public function process(Withdrawn $withdrawn, Request $request){
+    public function process(Request $request){
+        $withdrawn = Withdrawn::whereId($request->id)->first();
         if($withdrawn->status == 0){
             $withdrawn->status = $request->status;
             $withdrawn->save();
@@ -41,6 +42,9 @@ class WithdrawnController extends Controller
                     $wallet->save();
                 }
                        
+            }else{
+                $withdrawn->note = $request->note;
+                $withdrawn->save();
             }
             return back()->with('success', 'Duyệt thành công');
         }else{
